@@ -1,5 +1,5 @@
  
-<!-- ----- debut de la page cave_acceuil -->
+<!-- ----- debut de la page cave_accueil -->
 <?php include 'fragment/fragmentCaveHeader.html'; ?>
 <body>
   <div class="container">
@@ -14,7 +14,7 @@
   include 'fragment/fragmentCaveFooter.html';
   ?>
 
-  <!-- ----- fin de la page cave_acceuil -->
+  <!-- ----- fin de la page cave_accueil -->
 
 </body>
 </html>
