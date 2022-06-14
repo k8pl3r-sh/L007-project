@@ -15,11 +15,17 @@ $action = htmlspecialchars($param["action"]);
 
 // --- Liste des méthodes autorisées
 switch ($action) {
- case "vinReadAll" :
- case "vinReadOne" :
- case "vinReadId" :
- case "vinCreate" :
- case "vinCreated" :
+ case "listFamily" :
+ case "addFamily" :
+ case "selectFamily" :
+ case "listEvent" :
+ case "addEvent" :
+ case "listLink" :
+ case "addParentLink" :
+ case "addUnionLink" :
+ case "listIndiv" :
+ case "addIndiv" :
+ case "pageIndiv" :
   ControllerVin::$action();
   break;
 
