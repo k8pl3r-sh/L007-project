@@ -9,6 +9,7 @@ University project in php
 ## Project functions to implement
 
 Function | Status | Difficulty
+--- | --- | ---
 listFamily | TODO | ---
 addFamily | TODO | ---
 selectFamily | TODO | ---
