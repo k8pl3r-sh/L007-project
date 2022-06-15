@@ -1,31 +1,32 @@
 
 <!-- ----- debut ControllerEvent -->
 <?php
-require_once '../model/ModelFamily.php';
+require_once '../model/ModelEvent.php';
 
-class ControllerFamily {
+class ControllerEvent {
  // --- page d'accueil
+  /*
  public static function Accueil() {
   include 'config.php';
   $vue = $root . '/app/view/viewAccueil.php';
   if (DEBUG)
-   echo ("ControllerFamily : Accueil : vue = $vue");
+   echo ("ControllerEvent : Accueil : vue = $vue");
   require ($vue);
- }
+ }*/
 
 
  // --- Liste des Familles
- public static function listFamily() {
-  $results = ModelFamily::listFamily();
+ public static function listEvent() {
+  $results = ModelEvent::listEvent();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/famille/viewAll.php';
+  $vue = $root . '/app/view/event/viewAll.php';
   if (DEBUG)
-   echo ("ControllerFamily : listFamily : vue = $vue");
+   echo ("ControllerEvent : listEvent : vue = $vue");
   require ($vue);
  }
 
-
+/*
  public static function addFamily() {
   // ----- Construction chemin de la vue
   include 'config.php';
@@ -45,10 +46,8 @@ class ControllerFamily {
   $vue = $root . '/app/view/famille/viewInsert.php';
   require ($vue);
  }
-
+*/
 }
 
 ?>
-<!-- ----- fin ControllerFamily -->
-
-
+<!-- ----- fin ControllerEvent -->

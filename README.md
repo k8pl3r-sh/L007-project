@@ -11,9 +11,9 @@ University project in php
 Function | Status | Difficulty
 --- | --- | ---
 listFamily | DONE | ---
-addFamily | TODO | ---
-selectFamily | TODO | ---
-listEvent | TODO | ---
+addFamily | TO DEBUG | ---
+selectFamily | TO DEBUG | ---
+listEvent | TO DEBUG | ---
 addEvent | TODO | ---
 listLink | TODO | ---
 addParentLink | TODO | ---

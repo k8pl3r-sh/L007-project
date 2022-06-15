@@ -25,7 +25,8 @@ switch ($action) {
     ControllerFamily::$action();
     break;
  case "listEvent" :
-    //TODO
+    ControllerEvent::$action();
+    break;
  case "addEvent" :
     //TODO
  case "listLink" :

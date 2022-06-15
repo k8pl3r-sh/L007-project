@@ -1,5 +1,5 @@
  
-<!-- ----- debut de la page cave_accueil -->
+<!-- ----- debut de la page Accueil -->
 <?php include 'fragment/fragmentCaveHeader.html'; ?>
 <body>
   <div class="container">
