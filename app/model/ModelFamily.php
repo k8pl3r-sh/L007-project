@@ -70,7 +70,7 @@ class ModelFamily {
   try {
    $database = Model::getInstance();
 
-   $query = "select max(id) from vin";
+   $query = "select max(id) from famille";
    $statement = $database->query($query);
    $tuple = $statement->fetch();
    $id = $tuple['0'];

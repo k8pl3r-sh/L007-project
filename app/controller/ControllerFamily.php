@@ -5,9 +5,9 @@ require_once '../model/ModelFamily.php';
 
 class ControllerFamily {
  // --- page d'accueil
- public static function caveAccueil() {
+ public static function Accueil() {
   include 'config.php';
-  $vue = $root . '/app/view/viewCaveAccueil.php';
+  $vue = $root . '/app/view/viewAccueil.php';
   if (DEBUG)
    echo ("ControllerFamily : caveAccueil : vue = $vue");
   require ($vue);
@@ -21,7 +21,7 @@ class ControllerFamily {
   include 'config.php';
   $vue = $root . '/app/view/vin/viewAll.php';
   if (DEBUG)
-   echo ("ControllerVin : listFamily : vue = $vue");
+   echo ("ControllerFamily : listFamily : vue = $vue");
   require ($vue);
  }
 
@@ -29,7 +29,7 @@ class ControllerFamily {
  public static function addFamily() {
   // ----- Construction chemin de la vue
   include 'config.php';
-  $results = ModelVin::selectFamily(
+  $results = ModelFamily::addFamily(
       htmlspecialchars($_GET['nom']));
   $vue = $root . '/app/view/vin/viewInsert.php';
   require ($vue);
@@ -37,7 +37,7 @@ class ControllerFamily {
 
  public static function selectFamily() {
   // ajouter une validation des informations du formulaire
-  $results = ModelVin::selectFamily(
+  $results = ModelFamily::selectFamily(
       htmlspecialchars($_GET['nom']));
   
   // ----- Construction chemin de la vue
