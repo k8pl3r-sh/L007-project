@@ -18,7 +18,9 @@ switch ($action) {
  case "listFamily" :
     ControllerFamily::$action();
  case "addFamily" :
+    ControllerFamily::$action();
  case "selectFamily" :
+    ControllerFamily::$action();
  case "listEvent" :
  case "addEvent" :
  case "listLink" :
