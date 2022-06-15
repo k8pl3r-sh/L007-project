@@ -9,7 +9,7 @@ class ControllerFamily {
   include 'config.php';
   $vue = $root . '/app/view/viewAccueil.php';
   if (DEBUG)
-   echo ("ControllerFamily : caveAccueil : vue = $vue");
+   echo ("ControllerFamily : Accueil : vue = $vue");
   require ($vue);
  }
 
@@ -19,7 +19,7 @@ class ControllerFamily {
   $results = ModelFamily::listFamily();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/vin/viewAll.php';
+  $vue = $root . '/app/view/famille/viewAll.php';
   if (DEBUG)
    echo ("ControllerFamily : listFamily : vue = $vue");
   require ($vue);
@@ -31,7 +31,7 @@ class ControllerFamily {
   include 'config.php';
   $results = ModelFamily::addFamily(
       htmlspecialchars($_GET['nom']));
-  $vue = $root . '/app/view/vin/viewInsert.php';
+  $vue = $root . '/app/view/famille/viewInsert.php';
   require ($vue);
  }
 
@@ -42,7 +42,7 @@ class ControllerFamily {
   
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/vin/viewInserted.php';
+  $vue = $root . '/app/view/famille/viewInserted.php';
   require ($vue);
  }
 

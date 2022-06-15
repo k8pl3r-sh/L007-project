@@ -43,7 +43,7 @@ switch ($action) {
  // Tache par défaut
  default:
  // TO change
-  $action = "caveAccueil";
+  $action = "Accueil";
   ControllerFamily::$action();
   break;
 }

@@ -66,7 +66,7 @@ class ModelFamily {
  }
 
 
- public static function addFamily($id, $nom) {// todo voir comment faire pour l'id
+ public static function addFamily($nom) {// todo voir comment faire pour l'id
   try {
    $database = Model::getInstance();
 
