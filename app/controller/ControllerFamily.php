@@ -1,31 +1,33 @@
 
 <!-- ----- debut ControllerVin -->
 <?php
-require_once '../model/ModelVin.php';
+require_once '../model/ModelFamily.php';
 
-class ControllerVin {
- // --- page d'acceuil
+class ControllerFamily {
+ // --- page d'accueil
  public static function caveAccueil() {
   include 'config.php';
   $vue = $root . '/app/view/viewCaveAccueil.php';
   if (DEBUG)
-   echo ("ControllerVin : caveAccueil : vue = $vue");
+   echo ("ControllerFamily : caveAccueil : vue = $vue");
   require ($vue);
  }
 
- // --- Liste des vins
- public static function vinReadAll() {
-  $results = ModelVin::getAll();
+
+ // --- Liste des Familles
+ public static function listFamily() {
+  $results = ModelFamily::listFamily();
   // ----- Construction chemin de la vue
   include 'config.php';
   $vue = $root . '/app/view/vin/viewAll.php';
   if (DEBUG)
-   echo ("ControllerVin : vinReadAll : vue = $vue");
+   echo ("ControllerVin : listFamily : vue = $vue");
   require ($vue);
  }
 
+/*
  // Affiche un formulaire pour sélectionner un id qui existe
- public static function vinReadId() {
+ public static function listFamily() {
   $results = ModelVin::getAllId();
 
   // ----- Construction chemin de la vue
@@ -60,14 +62,17 @@ class ControllerVin {
   $results = ModelVin::insert(
       htmlspecialchars($_GET['cru']), htmlspecialchars($_GET['annee']), htmlspecialchars($_GET['degre'])
   );
+
+  
   // ----- Construction chemin de la vue
   include 'config.php';
   $vue = $root . '/app/view/vin/viewInserted.php';
   require ($vue);
  }
- 
+*/
 }
+
 ?>
-<!-- ----- fin ControllerVin -->
+<!-- ----- fin ControllerFamily -->
 
 

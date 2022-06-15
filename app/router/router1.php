@@ -1,7 +1,7 @@
 
 <!-- ----- debut Router1 -->
 <?php
-require ('../controller/ControllerVin.php');
+require ('../controller/ControllerFamily.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -16,6 +16,7 @@ $action = htmlspecialchars($param["action"]);
 // --- Liste des méthodes autorisées
 switch ($action) {
  case "listFamily" :
+    ControllerFamily::$action();
  case "addFamily" :
  case "selectFamily" :
  case "listEvent" :
@@ -25,14 +26,12 @@ switch ($action) {
  case "addUnionLink" :
  case "listIndiv" :
  case "addIndiv" :
- case "pageIndiv" :
-  ControllerVin::$action();
   break;
 
  // Tache par défaut
  default:
   $action = "caveAccueil";
-  ControllerVin::$action();
+  ControllerFamily::$action();
 }
 ?>
 <!-- ----- Fin Router1 -->

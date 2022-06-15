@@ -8,7 +8,7 @@ if (!defined('DEBUG')) {
 }
 
 // Configuration de la base de données
- $dsn = 'mysql:dbname=root;host=localhost;charset=utf8';
+ $dsn = 'mysql:dbname=vin;host=localhost;charset=utf8';
  $username = 'root';
  $password = 'root';
 
