@@ -17,23 +17,35 @@ $action = htmlspecialchars($param["action"]);
 switch ($action) {
  case "listFamily" :
     ControllerFamily::$action();
+    break;
  case "addFamily" :
     ControllerFamily::$action();
+    break;
  case "selectFamily" :
     ControllerFamily::$action();
+    break;
  case "listEvent" :
+    //TODO
  case "addEvent" :
+    //TODO
  case "listLink" :
+    //TODO
  case "addParentLink" :
+    //TODO
  case "addUnionLink" :
+    //TODO
  case "listIndiv" :
+    //TODO
  case "addIndiv" :
+    //TODO
   break;
 
  // Tache par défaut
  default:
+ // TO change
   $action = "caveAccueil";
   ControllerFamily::$action();
+  break;
 }
 ?>
 <!-- ----- Fin Router1 -->

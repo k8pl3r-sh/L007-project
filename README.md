@@ -10,7 +10,7 @@ University project in php
 
 Function | Status | Difficulty
 --- | --- | ---
-listFamily | TODO | ---
+listFamily | DONE | ---
 addFamily | TODO | ---
 selectFamily | TODO | ---
 listEvent | TODO | ---
