@@ -68,6 +68,7 @@ class ModelEvent { // TODO
 
 public static function listEvent() {
   try {
+    echo("Model_listEvent");
    $database = Model::getInstance();
    $query = "select * from evenement";
    $statement = $database->prepare($query);

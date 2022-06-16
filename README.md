@@ -13,7 +13,7 @@ Function | Status | Difficulty
 listFamily | DONE | ---
 addFamily | TO DEBUG | ---
 selectFamily | TO DEBUG | ---
-listEvent | TO DEBUG | ---
+listEvent | DONE | ---
 addEvent | TODO | ---
 listLink | TODO | ---
 addParentLink | TODO | ---

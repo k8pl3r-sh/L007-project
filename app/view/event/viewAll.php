@@ -15,8 +15,12 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     <table class = "table table-striped table-bordered">
       <thead>
         <tr>
+          <th scope = "col">famille_id</th>
           <th scope = "col">id</th>
-          <th scope = "col">nom</th>
+          <th scope = "col">iid</th>
+          <th scope = "col">Event_type</th>
+          <th scope = "col">Event_date</th>
+          <th scope = "col">Event_Lieu</th>
         </tr>
       </thead>
       <tbody>

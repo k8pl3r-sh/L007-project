@@ -16,7 +16,8 @@ class ControllerEvent {
 
  // --- Liste des Familles
  public static function listEvent() {
-  $results = ModelFamily::listEvent();
+  $results = ModelEvent::listEvent();
+  echo("ControllerEvent");
   // ----- Construction chemin de la vue
   include 'config.php';
   $vue = $root . '/app/view/event/viewAll.php';
