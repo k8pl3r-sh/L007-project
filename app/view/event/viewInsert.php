@@ -16,6 +16,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
       <div class="form-group">
         <input type="hidden" name='action' value='addEvent'>        
         <label>famille id : </label><input type="text" name='famille_id' size='30'><br/>
+        <!-- ----- PAS sûr de l'utilité de l'id -->
         <label>id : </label><input type="text" name='id' size='30'></br>
         <label> iid : </label><input type="text" name="iid" className="nom"  /><br/>
         <p>event_type</p>

@@ -70,7 +70,8 @@ public static function listEvent() {
   try {
     echo("Model_listEvent");
    $database = Model::getInstance();
-   $query = "select * from evenement";
+   $query = "select * from evenement"; // TODO pour la famille active 
+   // SELECT * FROM `evenement` WHERE famille_id=1002 
    $statement = $database->prepare($query);
    $statement->execute();
    $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelEvent");
