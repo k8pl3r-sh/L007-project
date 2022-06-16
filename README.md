@@ -13,11 +13,13 @@ Function | Status | Difficulty
 listFamily | DONE | ---
 addFamily | TO DEBUG | ---
 selectFamily | TO DEBUG | ---
-listEvent | DONE | ---
+listEvent | Partially DONE | ---
 addEvent | TODO | ---
-listLink | TODO | ---
+listLink | Partially | ---
 addParentLink | TODO | ---
 addUnionLink | TODO | ---
 listIndiv | TODO | ---
 addIndiv | TODO | ---
 pageIndiv | TODO | ---
+
+If partially done: implement it with the selected family

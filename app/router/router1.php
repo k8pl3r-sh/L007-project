@@ -4,6 +4,8 @@
 require ('../controller/ControllerFamily.php');
 require ('../controller/ControllerEvent.php');
 
+require ('../controller/ControllerLink.php');
+
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
 
@@ -39,7 +41,8 @@ switch ($action) {
     break;
 
  case "listLink" :
-    //TODO
+    ControllerLink::$action();
+    break;
  case "addParentLink" :
     //TODO
  case "addUnionLink" :
