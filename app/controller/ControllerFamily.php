@@ -26,12 +26,29 @@ class ControllerFamily {
  }
 
 
+ public static function FamilyCreate() { // Affiche la vue du formulaire
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/famille/viewInsert.php';
+  require ($vue);
+ }
+
+ public static function debug() { 
+  // ----- Construction chemin de la vue
+  include 'config.php';
+  $vue = $root . '/app/view/famille/debug.php';
+  //echo($_GET['nom']);
+  require ($vue);
+ }
+
  public static function addFamily() {
   // ----- Construction chemin de la vue
   include 'config.php';
-  $results = ModelFamily::addFamily(
-      htmlspecialchars($_GET['nom']));
-  $vue = $root . '/app/view/famille/viewInsert.php';
+  
+  $results = ModelFamily::addFamily(htmlspecialchars($_GET['nom']));
+
+  $vue = $root . '/app/view/famille/viewInserted.php';
+  //$vue = $root . '/app/view/famille/debug.php';
   require ($vue);
  }
 

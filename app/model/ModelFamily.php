@@ -68,8 +68,9 @@ class ModelFamily {
 
  public static function addFamily($nom) {// todo voir comment faire pour l'id
   try {
+    
    $database = Model::getInstance();
-
+echo($nom);
    $query = "select max(id) from famille";
    $statement = $database->query($query);
    $tuple = $statement->fetch();
@@ -82,7 +83,7 @@ class ModelFamily {
    $statement->execute([
      'id' => $id,
      'nom' => $nom
-   ]);
+   ]); 
    return $id;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());

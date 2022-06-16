@@ -2,6 +2,7 @@
 <!-- ----- debut Router1 -->
 <?php
 require ('../controller/ControllerFamily.php');
+require ('../controller/ControllerEvent.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -16,6 +17,9 @@ $action = htmlspecialchars($param["action"]);
 // --- Liste des méthodes autorisées
 switch ($action) {
  case "listFamily" :
+    ControllerFamily::$action();
+    break;
+ case "FamilyCreate" :
     ControllerFamily::$action();
     break;
  case "addFamily" :
@@ -39,6 +43,10 @@ switch ($action) {
     //TODO
  case "addIndiv" :
     //TODO
+  break;
+
+ case "debug" :
+    ControllerFamily::$action();
   break;
 
  // Tache par défaut

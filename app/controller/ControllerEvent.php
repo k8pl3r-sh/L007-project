@@ -19,9 +19,9 @@ class ControllerEvent {
   $results = ModelFamily::listEvent();
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/famille/viewAll.php';
+  $vue = $root . '/app/view/event/viewAll.php';
   if (DEBUG)
-   echo ("ControllerFamily : listEvent : vue = $vue");
+   echo ("ControllerEvent : listEvent : vue = $vue");
   require ($vue);
  }
 
