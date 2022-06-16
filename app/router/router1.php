@@ -6,6 +6,9 @@ require ('../controller/ControllerEvent.php');
 
 require ('../controller/ControllerLink.php');
 
+require ('../controller/ControllerIndiv.php');
+
+
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
 
@@ -47,8 +50,10 @@ switch ($action) {
     //TODO
  case "addUnionLink" :
     //TODO
+
  case "listIndiv" :
-    //TODO
+    ControllerIndiv::$action();
+    break;
  case "addIndiv" :
     //TODO
   break;
