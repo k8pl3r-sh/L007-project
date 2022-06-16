@@ -26,7 +26,6 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
            printf("<tr><td>%d</td><td>%s</td></tr>", $element->getId(), 
              $element->getName());
           }
-          echo("TEST")
           ?>
       </tbody>
     </table>

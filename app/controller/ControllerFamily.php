@@ -36,9 +36,7 @@ class ControllerFamily {
  public static function debug() { 
   // ----- Construction chemin de la vue
   include 'config.php';
-  $vue = $root . '/app/view/famille/debug.php';
-  //echo($_GET['nom']);
-  require ($vue);
+  echo("DEBUG");
  }
 
  public static function addFamily() {
@@ -46,6 +44,7 @@ class ControllerFamily {
   include 'config.php';
   
   $results = ModelFamily::addFamily(htmlspecialchars($_GET['nom']));
+  // suppr var 
 
   $vue = $root . '/app/view/famille/viewInserted.php';
   //$vue = $root . '/app/view/famille/debug.php';

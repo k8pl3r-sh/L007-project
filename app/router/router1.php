@@ -31,8 +31,13 @@ switch ($action) {
  case "listEvent" :
     ControllerEvent::$action();
     break;
+ case "EventCreate" :
+    ControllerEvent::$action();
+    break;
  case "addEvent" :
-    //TODO
+    ControllerEvent::$action();
+    break;
+
  case "listLink" :
     //TODO
  case "addParentLink" :

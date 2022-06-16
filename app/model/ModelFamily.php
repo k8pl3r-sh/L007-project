@@ -47,30 +47,11 @@ class ModelFamily {
   }
  }
 
-
- public static function selectFamily($nom) {
-  // edit the jumbotron
+public static function addFamily($nom) {// todo DEBUG soucis sur la ligne $database
   try {
+    // issue in the next line
    $database = Model::getInstance();
-   $query = "select id from famille where nom = :nom";
-   $statement = $database->prepare($query);
-   $statement->execute([
-     'nom' => $nom
-   ]);
-   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelFamily");
-   return $results;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
 
-
- public static function addFamily($nom) {// todo voir comment faire pour l'id
-  try {
-    
-   $database = Model::getInstance();
-echo($nom);
    $query = "select max(id) from famille";
    $statement = $database->query($query);
    $tuple = $statement->fetch();
@@ -90,6 +71,26 @@ echo($nom);
    return -1;
   }
  }
+
+ public static function selectFamily($nom) {
+  // edit the jumbotron
+  try {
+   $database = Model::getInstance();
+   $query = "select id from famille where nom = :nom";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'nom' => $nom
+   ]);
+   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelFamily");
+   return $results;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+
+
+
 
 }
 
