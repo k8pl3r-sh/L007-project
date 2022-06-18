@@ -17,7 +17,7 @@ create table if not exists individu (
   id integer not null,
   nom varchar(50) not null,
   prenom varchar(50) not null,
-  sexe varchar(1) check (sexe in ('F', 'H', 'f', 'h')), 
+  sexe varchar(1) check (sexe in ('F', 'H', 'f', 'h','?')),
   pere integer not null,
   mere integer not null,
   primary key (id, famille_id),
