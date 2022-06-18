@@ -15,8 +15,6 @@ class Model extends PDO {
   // les variables sont définies dans le fichier config.php
   include_once '../controller/config.php';
   // DEBUG
-  echo ("Model : getInstance : dsn = $dsn</br>");
-  
   if (DEBUG) echo ("Model : getInstance : dsn = $dsn</br>");
 
   $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);

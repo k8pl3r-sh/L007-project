@@ -46,20 +46,25 @@ class ControllerFamily {
   $results = ModelFamily::addFamily(htmlspecialchars($_GET['nom']));
   // suppr var 
 
-  $vue = $root . '/app/view/famille/viewInserted.php';
+     if (isset($root))
+         $vue = $root . '/app/view/famille/viewInserted.php';
   //$vue = $root . '/app/view/famille/debug.php';
   require ($vue);
  }
 
  public static function selectFamily() {
   // ajouter une validation des informations du formulaire
-  $results = ModelFamily::selectFamily(
-      htmlspecialchars($_GET['nom']));
-  
-  // ----- Construction chemin de la vue
-  include 'config.php';
-  $vue = $root . '/app/view/famille/viewInsert.php';
-  require ($vue);
+         // ----- Construction chemin de la vue
+     $object_list =  ModelFamily::listFamily();
+     include 'config.php';
+
+         if (isset($root))
+             $vue = $root . '/app/view/famille/viewSelect.php';
+         require ($vue);
+     if(isset($_GET["nom"])){
+         $results = ModelFamily::selectFamily(
+             htmlspecialchars($_GET['nom']));
+     }
  }
 
 }

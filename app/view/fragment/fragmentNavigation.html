@@ -1,0 +1,60 @@
+<!-- ----- début fragmentCaveMenu -->
+
+<nav class="px-2 navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="router1.php?action=accueil">Généalogie des familles</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Famille
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="Famille">
+                      <a class="dropdown-item" href="router1.php?action=listFamily">Liste des familles</a>
+                      <a class="dropdown-item" href="router1.php?action=familyCreate">Ajout d'une famille</a>
+                      <a class="dropdown-item" href="router1.php?action=selectFamily">Selection d'une famille</a>
+                    </div>
+                </li>                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Évènement
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="Famille">
+                      <a class="dropdown-item" href="router1.php?action=listEvent">Liste des évènements</a>
+                      <a class="dropdown-item" href="router1.php?action=eventCreate">Ajout d'un évènement</a>
+                    </div>
+                </li>
+              <li class="dropdown">
+                <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                  Lien
+                </a>
+                <div class="dropdown-menu" aria-labelledby="Famille">
+                  <a class="dropdown-item" href="router1.php?action=listLink">Liste des liens</a>
+                  <a class="dropdown-item" href="router1.php?action=addParentLink">Ajout d'un lien parent</a>
+                  <a class="dropdown-item" href="router1.php?action=addUnionLink">Selection d'un lien union</a>
+                </div>
+              </li>
+              <li class="dropdown">
+                <a class="nav-link dropdown-toggle" type="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                  Individu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="Famille">
+                  <a class="dropdown-item" href="router1.php?action=listIndiv">Liste des individus</a>
+                  <a class="dropdown-item" href="router1.php?action=addIndiv">Ajout d'un individu</a>
+                  <a class="dropdown-item" href="router1.php?action=selectIndiv">Selection d'un individu</a>
+                </div>
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ----- fin fragmentCaveMenu -->
+
