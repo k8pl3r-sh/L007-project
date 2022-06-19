@@ -4,15 +4,6 @@
 require_once '../model/ModelIndiv.php';
 
 class ControllerIndiv {
- // --- page d'accueil
- public static function Accueil() {
-  include 'config.php';
-  $vue = $root . '/app/view/viewAccueil.php';
-  if (DEBUG)
-   echo ("ControllerLink : Accueil : vue = $vue");
-  require ($vue);
- }
-
 
  // --- Liste des Familles
  public static function listIndiv() {

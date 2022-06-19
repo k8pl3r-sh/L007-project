@@ -12,19 +12,68 @@ create table if not exists famille (
 
 -- =====================================================================================
 
-create table if not exists individu (
-  famille_id integer not null,
-  id integer not null,
-  nom varchar(50) not null,
-  prenom varchar(50) not null,
-  sexe varchar(1) check (sexe in ('F', 'H', 'f', 'h','?')),
-  pere integer not null,
-  mere integer not null,
-  primary key (id, famille_id),
-  foreign key (famille_id) references famille(id),
-  foreign key (pere) references individu(id),
-  foreign key (mere) references individu(id)
-) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+create table if not exists individu
+(
+    famille_id
+    integer
+    not
+    null,
+    id
+    integer
+    not
+    null,
+    nom
+    varchar
+(
+    50
+) not null,
+    prenom varchar
+(
+    50
+) not null,
+    sexe varchar
+(
+    1
+) check
+(
+    sexe
+    in
+(
+    'F',
+    'H',
+    'f',
+    'h',
+    '?'
+)),
+    pere integer,
+    mere integer,
+    primary key
+(
+    id,
+    famille_id
+),
+    foreign key
+(
+    famille_id
+) references famille
+(
+    id
+),
+    foreign key
+(
+    pere
+) references individu
+(
+    id
+),
+    foreign key
+(
+    mere
+) references individu
+(
+    id
+)
+    ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 -- =====================================================================================
 

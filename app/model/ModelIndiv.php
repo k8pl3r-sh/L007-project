@@ -1,94 +1,114 @@
 <!-- ----- debut ModelIndiv -->
 
 <?php
-require_once 'Model.php';
+require_once '../controller/DatabaseConnector.php';
 
-class ModelIndiv { // TODO
- private $famille_id, $id, $iid1, $iid2, $lien_type, $lien_date, $lien_lieu;
+class ModelIndiv
+{ // TODO
 
- public function __construct($famille_id = NULL, $id = NULL, $nom = NULL, $prenom = NULL, $sexe = NULL, $pere = NULL, $mere = NULL) {
 
-  if (!is_null($id)) {
-   $this->famille_id = $famille_id;
-   $this->id = $id;
-   $this->nom = $nom;
-   $this->prenom = $prenom;
-   $this->sexe = $sexe;
-   $this->pere = $pere;
-   $this->mere = $mere;
-  }
- }
+    private $famille_id, $id, $iid1, $iid2, $lien_type, $lien_date, $lien_lieu;
 
- function setId($id) {
-  $this->id = $id;
- }
+    public function __construct($famille_id = NULL, $id = NULL, $nom = NULL, $prenom = NULL, $sexe = NULL, $pere = NULL, $mere = NULL)
+    {
 
- function setFamille_Id($famille_id) {
-  $this->famille_id = $famille_id;
- }
+        if (!is_null($id)) {
+            $this->famille_id = $famille_id;
+            $this->id = $id;
+            $this->nom = $nom;
+            $this->prenom = $prenom;
+            $this->sexe = $sexe;
+            $this->pere = $pere;
+            $this->mere = $mere;
+        }
+    }
 
-  function setNom($nom) {
-  $this->nom = $nom;
- }
+    function setId($id)
+    {
+        $this->id = $id;
+    }
 
-  function setPrenom($prenom) {
-  $this->prenom = $prenom;
- }
+    function setFamille_Id($famille_id)
+    {
+        $this->famille_id = $famille_id;
+    }
 
- function setSexe($sexe) {
-  $this->sexe = $sexe;
- }
+    function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
 
- function setPere($pere) {
-  $this->pere = $pere;
- }
+    function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
 
- function setMere($mere) {
-  $this->mere = $mere;
- }
- function getId() {
-  return $this->id;
- }
+    function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+    }
 
- function getFamille_Id() {
-  return $this->famille_id;
- }
+    function setPere($pere)
+    {
+        $this->pere = $pere;
+    }
 
-  function getPere() {
-  return $this->pere;
- }
- function getMere() {
-  return $this->mere;
- }
+    function setMere($mere)
+    {
+        $this->mere = $mere;
+    }
 
-  function getSexe() {
-  return $this->sexe;
- }
+    function getId()
+    {
+        return $this->id;
+    }
 
- function getNom() {
-  return $this->nom;
- }
+    function getFamille_Id()
+    {
+        return $this->famille_id;
+    }
 
-  function getPrenom() {
-  return $this->prenom;
- }
+    function getPere()
+    {
+        return $this->pere;
+    }
 
- 
+    function getMere()
+    {
+        return $this->mere;
+    }
 
-public static function listIndiv() {
-  try {
-   $database = Model::getInstance();
-   $query = "select * from individu"; // TODO pour la famille active 
-   // SELECT * FROM `lien` WHERE famille_id=1002 
-   $statement = $database->prepare($query);
-   $statement->execute();
-   $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelIndiv");
-   return $results;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    function getNom()
+    {
+        return $this->nom;
+    }
+
+    function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+
+    public static function listIndiv()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from individu"; // TODO pour la famille active
+            // SELECT * FROM `lien` WHERE famille_id=1002
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelIndiv");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
 }
 

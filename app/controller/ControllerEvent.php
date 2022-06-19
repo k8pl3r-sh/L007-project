@@ -4,15 +4,6 @@
 require_once '../model/ModelEvent.php';
 
 class ControllerEvent {
- // --- page d'accueil
- public static function Accueil() {
-  include 'config.php';
-  $vue = $root . '/app/view/viewAccueil.php';
-  if (DEBUG)
-   echo ("ControllerEvent : Accueil : vue = $vue");
-  require ($vue);
- }
-
 
  // --- Liste des Familles
  public static function listEvent() {

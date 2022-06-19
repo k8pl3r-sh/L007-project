@@ -1,18 +1,24 @@
 <!-- ----- début viewInsert -->
 
-<?php
-require($root . '/app/view/fragment/fragmentCaveHeader.html');
-?>
-
-<body>
-
 <script async>
-    function myFunction() {
-        document.getElementById("dropdown_famille").classList.toggle("show");
+    function onDropdownFamillyClick(button) {
+        dropdown = document.getElementById("dropdown_famille")
+        dropdown.classList.toggle("show");
+        if (dropdown.classList.contains("show")) {
+            document.getElementById("input_famille").value = "";
+            document.getElementById("viewOne").style.display = "none";
+            btn.type = "submit";
+
+        } else {
+            document.getElementById("viewOne").style.display = "";
+            btn.type = "button"
+        }
+
     }
 
     function dropDownItemClick(valeur) {
         document.getElementById("input_famille").value = valeur;
+        document.getElementById("dropdown_famille").value = "Famille choisie: " + valeur;
         filterFunction()
     }
 
@@ -20,7 +26,7 @@ require($root . '/app/view/fragment/fragmentCaveHeader.html');
         var input, filter, ul, li, a, i;
         input = document.getElementById("input_famille");
         filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
+        div = document.getElementById("dropdown_famille");
         a = div.getElementsByTagName("a");
         for (i = 0; i < a.length; i++) {
             txtValue = a[i].textContent || a[i].innerText;
@@ -33,19 +39,16 @@ require($root . '/app/view/fragment/fragmentCaveHeader.html');
     }
 </script>
 
-<?php
-include $root . '/app/view/fragment/fragmentNavigation.html';
-?>
-
 <main class="container">
 
-    <h2 class="py-5">Selection d'une famille</h2>
+    <h2 class="py-5">Veuillez choisir la famille qui vous intéresse</h2>
     <form role="form" method='POST' action='router1.php?action=selectFamily'>
 
         <div class="form-group">
             <input type="hidden" name='action' value='addFamily'>
             <div class="dropdown">
-                <button type="button" onclick="myFunction()" class="btn btn-outline-primary">Rechercher une famille
+                <button type="button" onclick="onDropdownFamillyClick(this)" class="btn btn-outline-primary">Rechercher
+                    une famille
                 </button>
                 <div id="dropdown_famille" class="dropdown-menu">
                     <input class="form-control" type="search" placeholder="Recherchez.." name="famille"
@@ -55,7 +58,7 @@ include $root . '/app/view/fragment/fragmentNavigation.html';
                     {
                         if (!empty($object_list))
                             foreach ($object_list as $obj)
-                                echo "<a class='dropdown-item' onclick='dropDownItemClick(\"" . $obj->getName() . "\")' value=" . $obj->getId() . ">" . $obj->getName() . "</a>";
+                                echo "<a type='submit' class='dropdown-item' onclick='dropDownItemClick(\"" . $obj->getName() . "\")' value=" . $obj->getId() . ">" . $obj->getName() . "</a>";
                     }
 
                     ?>
@@ -63,7 +66,7 @@ include $root . '/app/view/fragment/fragmentNavigation.html';
             </div>
         </div>
         <p/>
-        <button class="btn btn-primary" type="submit">Go</button>
+        <button class="btn btn-primary" type="submit">Valider</button>
     </form>
     <p/>
     <?php
@@ -76,9 +79,6 @@ include $root . '/app/view/fragment/fragmentNavigation.html';
     }
     ?>
 </main>
-
-
-<?php include $root . '/app/view/fragment/fragmentCaveFooter.html'; ?>
 
 <!-- ----- fin viewInsert -->
 

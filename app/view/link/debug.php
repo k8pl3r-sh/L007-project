@@ -2,24 +2,24 @@
 <!-- ----- début viewInsert -->
  
 <?php 
-require ($root . '/app/view/fragment/fragmentCaveHeader.html');
+require($root . '/app/view/fragment/fragmentHeader.html');
 ?>
 
 <body>
   <div class="container">
-    <?php
+      <?php
       include $root . '/app/view/fragment/fragmentNavigation.html';
       include $root . '/app/view/famille/viewFamilleSelectionnee.php';
       echo("TEST_DEBUG")
       echo($_GET['nom'])
-    ?> 
+    ?>
 
 
-    <p/>
+      <p/>
   </div>
-  <?php include $root . '/app/view/fragment/fragmentCaveFooter.html'; ?>
+  <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>
 
-<!-- ----- fin viewInsert -->
+  <!-- ----- fin viewInsert -->
 
 
 

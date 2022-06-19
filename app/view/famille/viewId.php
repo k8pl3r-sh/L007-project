@@ -1,7 +1,7 @@
 
 <!-- ----- début viewId -->
 <?php 
-require ($root . '/app/view/fragment/fragmentCaveHeader.html');
+require($root . '/app/view/fragment/fragmentHeader.html');
 ?>
 
 <body>
@@ -19,17 +19,15 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
         <label for="id">id : </label> <select class="form-control" id='id' name='id' style="width: 100px">
             <?php
             foreach ($results as $id) {
-             echo ("<option>$id</option>");
+                echo("<option>$id</option>");
             }
             ?>
-        </select>
+          </select>
       </div>
-      <p/>
-      <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit">Submit form</button>
     </form>
-    <p/>
   </div>
 
-  <?php include $root . '/app/view/fragment/fragmentCaveFooter.html'; ?>
+  <?php include $root . '/app/view/fragment/fragmentFooter.html'; ?>
 
   <!-- ----- fin viewId -->

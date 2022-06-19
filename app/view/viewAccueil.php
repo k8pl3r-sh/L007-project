@@ -1,20 +1,8 @@
- 
 <!-- ----- debut de la page Accueil -->
-<?php include 'fragment/fragmentCaveHeader.html'; ?>
-<body>
-  <div class="container">
-    <?php
-    include 'fragment/fragmentNavigation.html';
-    include 'fragment/fragmentCaveJumbotron.php';
-    ?>
-  </div>   
-  
-  
-  <?php
-  include 'fragment/fragmentCaveFooter.html';
-  ?>
+<main class="container">
 
-  <!-- ----- fin de la page cave_accueil -->
+</main>
+<!-- ----- fin de la page cave_accueil -->
 
 </body>
 </html>

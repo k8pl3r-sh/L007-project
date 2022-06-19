@@ -4,15 +4,6 @@
 require_once '../model/ModelLink.php';
 
 class ControllerLink {
- // --- page d'accueil
- public static function Accueil() {
-  include 'config.php';
-  $vue = $root . '/app/view/viewAccueil.php';
-  if (DEBUG)
-   echo ("ControllerLink : Accueil : vue = $vue");
-  require ($vue);
- }
-
 
  // --- Liste des Familles
  public static function listLink() {

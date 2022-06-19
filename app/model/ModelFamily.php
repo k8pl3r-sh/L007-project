@@ -1,7 +1,8 @@
 <!-- ----- debut ModelFamily -->
 
 <?php
-require_once 'Model.php';
+
+require_once '../controller/DatabaseConnector.php';
 
 class ModelFamily
 {
@@ -38,71 +39,43 @@ class ModelFamily
     }
 
 
+    /**
+     * Tranforme un tableau de tableau en tableau de famille
+     *
+     * @param $array
+     * @param $classType
+     * @return array
+     */
+    static function array_map_famille($array)
+    {
+        return array_map(function ($element) {
+            return new ModelFamily($element["id"], $element["nom"]);
+        }, $array);
+    }
+
 // retourne une liste des id
     public static function listFamily()
     {
-        try {
-            $database = Model::getInstance();
-            $query = "select * from famille";
-            $statement = $database->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelFamily");
-            return $results;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
+        $db = DatabaseConnector::getInstance();
+        return $db->query("select * from famille")->fetchAll();
     }
 
     public static function fromName($name)
     {
-        $result = self::selectFamily($name)[0];
-       return new ModelFamily($result->getId(), $name);
+        // comme on a besoin d'une seule famille
+        return self::array_map_famille(self::selectFamily($name))[0];
     }
 
 
     public static function addFamily($nom)
-    {// todo DEBUG soucis sur la ligne $database
-        try {
-            // issue in the next line
-            $database = Model::getInstance();
-
-            $query = "select max(id) from famille";
-            $statement = $database->query($query);
-            $tuple = $statement->fetch();
-            $id = $tuple['0'];
-            $id++;
-
-            // ajout d'un nouveau tuple;
-            $query = "insert into famille value (:id, :nom)";
-            $statement = $database->prepare($query);
-            $statement->execute([
-                'id' => $id,
-                'nom' => $nom
-            ]);
-            return $id;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return -1;
-        }
+    {
+        $id = DatabaseConnector::getInstance()->query("select max(id) as id from famille")->fetchArray()['id'] + 1;
+        DatabaseConnector::getInstance()->query("INSERT INTO famille (id, nom) VALUES (?, ?)", $id, $nom);
     }
 
     public static function selectFamily($nom)
     {
-        // edit the jumbotron
-        try {
-            $database = Model::getInstance();
-            $query = "select id from famille where nom = :nom";
-            $statement = $database->prepare($query);
-            $statement->execute([
-                'nom' => $nom
-            ]);
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelFamily");
-            return $results;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
+        return DatabaseConnector::getInstance()->query("select * from famille where nom = ?  order by id DESC limit 1", $nom)->fetchAll();
     }
 
 

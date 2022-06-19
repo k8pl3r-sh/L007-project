@@ -1,18 +1,6 @@
 <!-- ----- début viewAll -->
-<?php
 
-require($root . '/app/view/fragment/fragmentCaveHeader.html');
-?>
-
-<body>
-<?php
-include $root . '/app/view/fragment/fragmentNavigation.html';
-?>
 <main class="container">
-    <?php
-    include $root . '/app/view/famille/viewFamilleSelectionnee.php';
-    ?>
-
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -31,7 +19,6 @@ include $root . '/app/view/fragment/fragmentNavigation.html';
         </tbody>
     </table>
 </main>
-<?php include $root . '/app/view/fragment/fragmentCaveFooter.html'; ?>
 
 <!-- ----- fin viewAll -->
   

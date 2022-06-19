@@ -1,0 +1,48 @@
+<!-- ----- début fragmentFormulaireInsertFamille -->
+
+<main class="container">
+
+
+    <form action="router1.php?action=familyCreate" class="py-5" method='post' role="form">
+        <div class="form-group row">
+            <label class="col-4 col-form-label" for="input_nom_famille">Nom de famille</label>
+            <div class="col-8">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-address-card-o"></i>
+                        </div>
+                    </div>
+                    <input class="form-control" id="input_nom_famille"
+                           name="nom"
+                           oninvalid="setCustomValidity('Veuillez saisir uniquement des caractères de l\'alphabet. ')"
+                           pattern="^[a-zA-Z ]*$" placeholder="Insérez le nom de la famille à ajouter"
+                           required="required" type="text">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" style="float: right" type="submit">Valider</button>
+    </form>
+</main>
+<script async type="text/javascript">
+
+    function forceKeyPressUppercase(e) {
+        var charInput = e.keyCode;
+        if ((charInput >= 97) && (charInput <= 122)) { // lowercase
+            if (!e.ctrlKey && !e.metaKey && !e.altKey) { // no modifier key
+                var newChar = charInput - 32;
+                var start = e.target.selectionStart;
+                var end = e.target.selectionEnd;
+                e.target.value = e.target.value.substring(0, start) + String.fromCharCode(newChar) + e.target.value.substring(end);
+                e.target.setSelectionRange(start + 1, start + 1);
+                e.preventDefault();
+            }
+        }
+    }
+
+    document.getElementById("input_nom_famille").addEventListener("keypress", forceKeyPressUppercase, false);
+
+
+</script>
+
+<!-- ----- fin fragmentFormulaireInsertFamille -->
