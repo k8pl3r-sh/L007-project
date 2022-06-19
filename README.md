@@ -24,8 +24,3 @@ pageIndiv | TODO | ---
 
 If partially done: to implement with the selected family
 
-TODO Thursday: mettre des titres aux pages
-Au moins les view, fonctionnel plus tard
-page selectFamily
-page ajout indiv
-2 pages ajout lien
