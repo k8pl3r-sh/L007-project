@@ -88,7 +88,12 @@ class ModelEvent
      */
     public static function listEventFamille($famille_id)
     {
-        return DatabaseConnector::getInstance()->query("select * from evenement where famille_id = ? order by event_date", $famille_id)->fetchAll();
+        return DatabaseConnector::getInstance()->query(
+            "select
+                        f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
+                        from evenement e join famille f on e.famille_id = f.id
+                        where famille_id = ? 
+                        order by event_date", $famille_id)->fetchAll();
     }
 
     /**
@@ -104,7 +109,9 @@ class ModelEvent
      */
     public static function getAllEventTypes()
     {
-        return DatabaseConnector::getInstance()->query("select distinct event_type from evenement order by event_type")->fetchAll();
+        return DatabaseConnector::getInstance()->query(
+            "select distinct event_type from evenement order by event_type"
+        )->fetchAll();
     }
 }
 
