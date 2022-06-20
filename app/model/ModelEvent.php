@@ -20,21 +20,15 @@ class ModelEvent
         }
     }
 
-    public static function listEvent()
+
+    /**
+     * Liste tous les évènements liés à la famille passée en paramètre
+     * @param $famille_id l'id de la famille
+     * @return array tous les évènements
+     */
+    public static function listEventFamille($famille_id)
     {
-        try {
-            echo("Model_listEvent");
-            $database = Model::getInstance();
-            $query = "select * from evenement"; // TODO pour la famille active
-            // SELECT * FROM `evenement` WHERE famille_id=1002
-            $statement = $database->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelEvent");
-            return $results;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
+        return DatabaseConnector::getInstance()->query("select * from evenement where famille_id = ? order by event_date", $famille_id)->fetchAll();
     }
 
     function setId($id)

@@ -13,10 +13,8 @@ class ControllerFamily extends Controller
     public static function listFamily()
     {
         $results = ModelFamily::listFamily();
-        // ----- Construction chemin de la vue
         LibGlobale::print_html_table($results, "Toutes les familles");
-//        ControllerFamily::render_template("viewAll.php", ControllerFamily::$directory,
-//            array('results' => $results, 'titre' => "Toutes les familles"));
+
     }
 
 
@@ -74,7 +72,11 @@ class ControllerFamily extends Controller
     private static function setSelectedFamily($nom)
     {
         $_SESSION["nom_famille_selectionne"] = $nom;
+    }
 
+    public static function getSelectedFamily()
+    {
+        return ModelFamily::fromName($_SESSION["nom_famille_selectionne"])->getId();
     }
 
 

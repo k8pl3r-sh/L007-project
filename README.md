@@ -13,7 +13,7 @@ University project in php
 | listFamily    | DONE           | ---        |
 | addFamily     | DONE           | ---        |
 | selectFamily  | DONE           | ---        |
-| listEvent     | Partially DONE | ---        |
+| listEvent     | DONE           | ---        |
 | addEvent      | TODO           | ---        |
 | listLink      | Partially DONE | ---        |
 | addParentLink | TODO           | ---        |

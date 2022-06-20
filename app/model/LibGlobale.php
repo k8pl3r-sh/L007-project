@@ -5,7 +5,7 @@ class LibGlobale
 
     static function print_html_table($array, $titre)
     {
-        ControllerFamily::render_template("viewTable.php", ControllerFamily::$base_directory,
+        Controller::render_template("viewTable.php", Controller::$base_directory,
             array('array' => $array, 'titre' => $titre));
     }
 
