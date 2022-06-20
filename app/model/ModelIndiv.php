@@ -96,18 +96,25 @@ class ModelIndiv
 
     public static function listIndiv()
     {
-        try {
-            $database = Model::getInstance();
-            $query = "select * from individu"; // TODO pour la famille active
-            // SELECT * FROM `lien` WHERE famille_id=1002
-            $statement = $database->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelIndiv");
-            return $results;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
+        return DatabaseConnector::getInstance()->query(
+            "select 
+                        f.nom as famille, i.nom as nom, i.prenom as prenom,
+                        CONCAT(p.nom, ' ', p.prenom) as pere,
+                        CONCAT(m.nom, ' ', m.prenom) as mere
+                    from individu i
+                     inner join individu p on p.id = i.pere and i.famille_id = p.famille_id
+                     inner join individu m on m.id = i.mere and i.famille_id = m.famille_id
+                     join famille f on i.famille_id = f.id
+                    where i.id!=0
+                    order by f.nom, i.nom, i.prenom"
+        )->fetchAll();
+    }
+
+    public static function getAllIndivFromFamily($family_id)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select * from individu where famille_id=? and id!=0 order by nom, prenom", $family_id
+        )->fetchAll();
     }
 
 }

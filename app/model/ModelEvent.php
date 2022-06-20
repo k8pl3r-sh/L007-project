@@ -21,16 +21,6 @@ class ModelEvent
     }
 
 
-    /**
-     * Liste tous les évènements liés à la famille passée en paramètre
-     * @param $famille_id l'id de la famille
-     * @return array tous les évènements
-     */
-    public static function listEventFamille($famille_id)
-    {
-        return DatabaseConnector::getInstance()->query("select * from evenement where famille_id = ? order by event_date", $famille_id)->fetchAll();
-    }
-
     function setId($id)
     {
         $this->id = $id;
@@ -91,49 +81,31 @@ class ModelEvent
         return $this->event_lieu;
     }
 
-    /*
-     public static function selectFamily($nom) {
-      // edit the jumbotron
-      try {
-       $database = Model::getInstance();
-       $query = "select id from famille where nom = :nom";
-       $statement = $database->prepare($query);
-       $statement->execute([
-         'nom' => $nom
-       ]);
-       $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelFamily");
-       return $results;
-      } catch (PDOException $e) {
-       printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-       return NULL;
-      }
-     }
+    /**
+     * Liste tous les évènements liés à la famille passée en paramètre
+     * @param $famille_id l'id de la famille
+     * @return array tous les évènements
+     */
+    public static function listEventFamille($famille_id)
+    {
+        return DatabaseConnector::getInstance()->query("select * from evenement where famille_id = ? order by event_date", $famille_id)->fetchAll();
+    }
 
-
-     public static function addFamily($nom) {// todo voir comment faire pour l'id
-      try {
-       $database = Model::getInstance();
-
-       $query = "select max(id) from famille";
-       $statement = $database->query($query);
-       $tuple = $statement->fetch();
-       $id = $tuple['0'];
-       $id++;
-
-       // ajout d'un nouveau tuple;
-       $query = "insert into famille value (:id, :nom)";
-       $statement = $database->prepare($query);
-       $statement->execute([
-         'id' => $id,
-         'nom' => $nom
-       ]);
-       return $id;
-      } catch (PDOException $e) {
-       printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-       return -1;
-      }
-     }
-    */
+    /**
+     * Retourne un tableau représentant tous les types d'évènements possibles
+     * @return tableau de la forme
+     * array (size=2)
+     *   0 =>
+     *   array (size=1)
+     *  'event_type' => string 'NAISSANCE' (length=9)
+     *   1 =>
+     *  array (size=1)
+     * '    event_type' => string 'DECES' (length=5)
+     */
+    public static function getAllEventTypes()
+    {
+        return DatabaseConnector::getInstance()->query("select distinct event_type from evenement order by event_type")->fetchAll();
+    }
 }
 
 ?>
