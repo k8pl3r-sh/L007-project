@@ -38,6 +38,19 @@ class ControllerEvent extends Controller
             ));
     }
 
+    public static function eventHasBeenCreated()
+    {
+        require 'config.php';
+
+        $date = $_POST["date"];
+        $evenement = $_POST["evenement"];
+        $individu = $_POST["individu"];
+        $lieu = $_POST["lieu"];
+        $famille_id = ControllerFamily::getSelectedFamily();
+
+        return ModelEvent::addEvent($famille_id, $individu, $evenement, $date, $lieu);
+    }
+
 }
 
 ?>

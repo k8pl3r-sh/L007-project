@@ -1,7 +1,7 @@
 <!-- ----- début fragmentFormulaireInsertEvent -->
 
 <main class="container">
-    <form role="form" method='get' action='router1.php?action=addEvent'>
+    <form role="form" method='post' action='router1.php?action=eventCreate'>
         <div class="form-group row">
             <label for="individu" class="col-4 col-form-label">Sélectionner un individu</label>
             <div class="col-8">

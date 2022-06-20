@@ -1,35 +1,30 @@
-
 <!-- ----- début viewInserted -->
-<?php
-require($root . '/app/view/fragment/fragmentHeader.html');
-?>
 
-<body>
-  <div class="container">
+<main class="container">
     <?php
-    include $root . '/app/view/fragment/fragmentNavigation.html';
-    include $root . '/app/view/famille/viewFamilleSelectionnee.php';
+    if (isset($_POST["individu"])) {
+        $nv_event = ControllerEvent::eventHasBeenCreated();
+        if (isset($nv_event)) {
+            $array = $nv_event;
+            require_once $root . "/app/view/viewTable.php";
+        } else {
+            echo "<h3>La famille <b>" . $_POST['nom'] . "</b> existe déjà</h3>";
+        }
+
+
+    } else
+        echo("<h3>Problème lors de la création de la famille</h3>");
+
+
     ?>
-    <!-- ===================================================== -->
+
+
     <?php
-    if ($results) {
-     echo ("<h3>Le nouveau vin a été ajouté </h3>");
-     echo("<ul>");
-     echo ("<li>id = " . $results . "</li>");
-        echo("<li>cru = " . $_GET['cru'] . "</li>");
-        echo("<li>annee = " . $_GET['annee'] . "</li>");
-        echo("<li>degre = " . $_GET['degre'] . "</li>");
-        echo("</ul>");
-    } else {
-        echo("<h3>Problème d'insertion du Vin</h3>");
-        echo("id = " . $_GET['cru']);
-    }
 
-    echo("</div>");
 
-    include $root . '/app/view/fragment/fragmentFooter.html';
     ?>
-      <!-- ----- fin viewInserted -->
+</main>
 
-    
-    
+<!-- ----- fin viewInserted -->
+
+

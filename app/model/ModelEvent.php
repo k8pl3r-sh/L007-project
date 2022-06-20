@@ -113,6 +113,30 @@ class ModelEvent
             "select distinct event_type from evenement order by event_type"
         )->fetchAll();
     }
+
+    /**
+     * @param $famille_id
+     * @param $individu
+     * @param $evenement
+     * @param $date
+     * @param $lieu
+     * @return array
+     * @throws Exception
+     */
+    public static function addEvent($famille_id, $individu, $evenement, $date, $lieu)
+    {
+        DatabaseConnector::getInstance()->query(
+            "insert into 
+                    evenement(famille_id, id, iid, event_type, event_date, event_lieu)
+                    value (?, (SELECT MAX( id ) + 1 from evenement as ee where famille_id=?), ?, ?, ?, ?)"
+            , $famille_id, $famille_id, $individu, $evenement, $date, $lieu
+        );
+        return DatabaseConnector::getInstance()->query(
+            "select * from evenement 
+                    where iid = ? and famille_id=? and event_date=? and event_type=? order by id DESC limit 1"
+            , $individu, $famille_id, $date, $evenement
+        )->fetchAll();
+    }
 }
 
 ?>

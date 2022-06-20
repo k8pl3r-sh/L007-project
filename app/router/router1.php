@@ -48,10 +48,6 @@ switch ($action) {
     case "eventCreate" :
         ControllerEvent::$action();
         break;
-    case "addEvent" :
-        ControllerEvent::$action();
-        break;
-
     case "listLink" :
         ControllerLink::$action();
         break;
