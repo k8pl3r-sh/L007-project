@@ -9,6 +9,9 @@ require('../controller/ControllerIndiv.php');
 require_once '../controller/Controller.php';
 
 
+session_start();
+
+
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
 
@@ -35,6 +38,9 @@ switch ($action) {
         break;
     case "selectFamily" :
         ControllerFamily::$action();
+        break;
+    case "familySelected":
+        ControllerFamily::familySelected();
         break;
     case "listEvent" :
         ControllerEvent::$action();

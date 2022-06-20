@@ -34,9 +34,12 @@ class ControllerFamily extends Controller
     {
         require 'config.php';
 
-        ModelFamily::addFamily($_POST["nom"]);
+        if (ModelFamily::fromName(($_POST["nom"])) !== null)
+            return null;
 
-        $nouveau = ModelFamily::fromName($_POST["nom"]);
+        self::setSelectedFamily($_POST["nom"]);
+        return ModelFamily::addFamily($_POST["nom"]);
+
     }
 
     public static function debug()
@@ -45,17 +48,6 @@ class ControllerFamily extends Controller
         include 'config.php';
         echo("DEBUG");
     }
-
-//    public static function addFamily()
-//    {
-//        // ----- Construction chemin de la vue
-//        echo "allo";
-//        ControllerFamily::render_template("viewInserted.php", ControllerFamily::$directory,
-//            array('titre' => "Ajout d'une famille",
-//                'results' => ModelFamily::addFamily(htmlspecialchars($_GET['nom']))
-//
-//            ));
-//    }
 
     public static function selectFamily()
     {
@@ -66,11 +58,23 @@ class ControllerFamily extends Controller
                 "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily()))
         );
 
-        if (isset($_GET["nom"])) {
-            $results = ModelFamily::selectFamily(
-                htmlspecialchars($_GET['nom']));
-            $_SESSION["nom"] = $_GET['nom'];
-        }
+    }
+
+    public static function familySelected()
+    {
+        self::setSelectedFamily($_GET["famille"]);
+        $element = ModelFamily::fromName($_SESSION["nom_famille_selectionne"]);
+        Controller::render_template("viewOne.php", ControllerFamily::$directory,
+            array('titre' => "Sélection d'une famille",
+                "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily()),
+                "element" => $element
+            ));
+    }
+
+    private static function setSelectedFamily($nom)
+    {
+        $_SESSION["nom_famille_selectionne"] = $nom;
+
     }
 
 

@@ -1,22 +1,21 @@
 <!-- ----- debut viewFamilleSelectionnee -->
 
-<div class="jumbotron">
+<section class="jumbotron text-center">
 
     <?php
 
     if (isset($famille_selectionne))
-        $_SESSION["famille_selectionne"] = $famille_selectionne->getName();
+        $_SESSION["nom_famille_selectionne"] = $famille_selectionne->getName();
 
-    if (isset($_SESSION["famille_selectionne"])) {
-        $famille_selectionne = ModelFamily::fromName($_SESSION["famille_selectionne"]);
-        echo '<h1 class="display-4">Famille sélectionnée: <b id="nom_famille">' . $famille_selectionne->getName() . '</b> </h1>';
+    if (isset($_SESSION["nom_famille_selectionne"])) {
+        $famille_selectionne = ModelFamily::fromName($_SESSION["nom_famille_selectionne"]);
+        echo '<p class="lead">Famille sélectionnée: <b id="nom_famille">' . $famille_selectionne->getName() . '</b> </p>';
     } else
-        echo '<h1 class="display-4">Pas de famille sélectionnée </h1>';
+        echo '<p class="lead">Pas de famille sélectionnée </p>';
 
     ?>
 
-</div>
-<p/>
+</section>
 
 
 <!-- ----- fin viewFamilleSelectionnee -->

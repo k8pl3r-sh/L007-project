@@ -1,9 +1,8 @@
 <!-- ----- début viewOne -->
 
 <section id="viewOne">
-    <?php
-    include $root . '/app/view/famille/viewFamilleSelectionnee.php';
-    ?>
+    <button class="btn btn-block btn-primary" onclick="history.back()">Choisir une autre famille</button>
+
 
     <table class="table table-striped table-bordered py-5">
         <thead>

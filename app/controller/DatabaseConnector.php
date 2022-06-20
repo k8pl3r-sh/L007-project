@@ -181,7 +181,7 @@ class DatabaseConnector
 
     public function affectedRows()
     {
-        return $this->query->affected_rows == -1 ? 0 : $this->query->affected_rows;
+        return $this->query->affected_rows;
     }
 
     public function lastInsertID()

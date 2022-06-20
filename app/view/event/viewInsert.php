@@ -9,8 +9,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
   <div class="container">
     <?php
       include $root . '/app/view/fragment/fragmentNavigation.html';
-      include $root . '/app/view/famille/viewFamilleSelectionnee.php';
-    ?> 
+    ?>
 
     <form role="form" method='get' action='router1.php'>
       <div class="form-group">

@@ -11,5 +11,6 @@ require($root . '/app/view/fragment/fragmentHeader.html');
 
 include $root . '/app/view/fragment/fragmentNavigation.html';
 include $root . '/app/view/fragment/fragmentTitreJumbotron.php';
+
 ?>
 

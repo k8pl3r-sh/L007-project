@@ -19,6 +19,8 @@
     function dropDownItemClick(valeur) {
         document.getElementById("input_famille").value = valeur;
         document.getElementById("dropdown_famille").value = "Famille choisie: " + valeur;
+        document.getElementById("nom_famille").innerText = valeur;
+
         filterFunction()
     }
 
@@ -37,47 +39,46 @@
             }
         }
     }
+
 </script>
 
 <main class="container">
 
-    <h2 class="py-5">Veuillez choisir la famille qui vous intéresse</h2>
-    <form role="form" method='POST' action='router1.php?action=selectFamily'>
+    <?php if ($_SERVER["REQUEST_METHOD"] === "GET") {
+        echo <<<'EOF'
+         <h2 class="py-5">Veuillez choisir la famille qui vous intéresse</h2>
+            <form role="form" method=POST' action='router1.php?action=familySelected'>
+        
+                <div class="form-group">
+                    <input type="hidden" name='action' value='familySelected'>
+                    <div class="dropdown">
+                        <button type="button" onclick="onDropdownFamillyClick(this)" class="btn btn-outline-primary">Rechercher
+                            une famille
+                        </button>
+                        <div id="dropdown_famille" class="dropdown-menu">
+                            <input class="form-control" type="search" placeholder="Recherchez.." name="famille"
+                                   id="input_famille"
+                                   onkeyup="filterFunction()">
+EOF;
+        if (!empty($object_list)) {
+            foreach ($object_list as $obj) {
+                echo "<a type='submit' class='dropdown-item' onclick='dropDownItemClick(\"" .
+                    $obj->getName() .
+                    "\")' value=" .
+                    $obj->getId() .
+                    ">" .
+                    $obj->getName() .
+                    "</a>";
+            };
+        }
 
-        <div class="form-group">
-            <input type="hidden" name='action' value='addFamily'>
-            <div class="dropdown">
-                <button type="button" onclick="onDropdownFamillyClick(this)" class="btn btn-outline-primary">Rechercher
-                    une famille
-                </button>
-                <div id="dropdown_famille" class="dropdown-menu">
-                    <input class="form-control" type="search" placeholder="Recherchez.." name="famille"
-                           id="input_famille"
-                           onkeyup="filterFunction()">
-                    <?php
-                    {
-                        if (!empty($object_list))
-                            foreach ($object_list as $obj)
-                                echo "<a type='submit' class='dropdown-item' onclick='dropDownItemClick(\"" . $obj->getName() . "\")' value=" . $obj->getId() . ">" . $obj->getName() . "</a>";
-                    }
-
-                    ?>
+        echo '  </div>
                 </div>
-            </div>
-        </div>
-        <p/>
-        <button class="btn btn-primary" type="submit">Valider</button>
-    </form>
-    <p/>
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $famille_selectionne = ModelFamily::fromName($_POST["famille"]);
-        $element = $famille_selectionne;
-
-        $vue = $root . '/app/view/famille/viewOne.php';
-        require($vue);
-    }
-    ?>
+                </div>
+                <p/>
+                <button class="btn btn-primary" type="submit">Valider</button>
+                </form>';
+    } ?>
 </main>
 
 <!-- ----- fin viewInsert -->

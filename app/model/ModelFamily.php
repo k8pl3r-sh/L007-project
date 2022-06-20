@@ -63,7 +63,9 @@ class ModelFamily
     public static function fromName($name)
     {
         // comme on a besoin d'une seule famille
-        return self::array_map_famille(self::selectFamily($name))[0];
+        $famille = self::selectFamily($name);
+        if (!empty($famille))
+            return self::array_map_famille($famille)[0];
     }
 
 
@@ -71,6 +73,7 @@ class ModelFamily
     {
         $id = DatabaseConnector::getInstance()->query("select max(id) as id from famille")->fetchArray()['id'] + 1;
         DatabaseConnector::getInstance()->query("INSERT INTO famille (id, nom) VALUES (?, ?)", $id, $nom);
+        return self::fromName($nom);
     }
 
     public static function selectFamily($nom)
