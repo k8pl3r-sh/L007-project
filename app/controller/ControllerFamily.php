@@ -22,7 +22,6 @@ class ControllerFamily extends Controller
     {
         // Affiche la vue du formulaire
 
-
         ControllerFamily::render_template("viewInsert.php", ControllerFamily::$directory,
             array('titre' => "Ajout d'une famille",
             ));
