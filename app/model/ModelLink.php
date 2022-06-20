@@ -5,7 +5,7 @@
 require_once '../controller/DatabaseConnector.php';
 
 class ModelLink
-{ // TODO
+{
 
 
     private $famille_id, $id, $iid1, $iid2, $lien_type, $lien_date, $lien_lieu;
@@ -27,11 +27,6 @@ class ModelLink
     function setId($id)
     {
         $this->id = $id;
-    }
-
-    function setFamille_Id($famille_id)
-    {
-        $this->famille_id = $famille_id;
     }
 
     function setIid1($iid1)
@@ -79,6 +74,11 @@ class ModelLink
         return $this->famille_id;
     }
 
+    function setFamille_Id($famille_id)
+    {
+        $this->famille_id = $famille_id;
+    }
+
     function getLink_type()
     {
         return $this->lien_type;
@@ -94,21 +94,24 @@ class ModelLink
         return $this->lien_lieu;
     }
 
-
-    public static function listLink()
+    public static function listLinkOfFamily($family_id)
     {
-        try {
-            $database = Model::getInstance();
-            $query = "select * from lien"; // TODO pour la famille active
-            // SELECT * FROM `lien` WHERE famille_id=1002
-            $statement = $database->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelLink");
-            return $results;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
+        return DatabaseConnector::getInstance()->query(
+            "
+                    select f.nom                          as 'famille',
+                           concat(i1.nom, ' ', i1.prenom) as 'individu1',
+                           concat(i2.nom, ' ', i2.prenom) as 'individu2',
+                           l.lien_type                    as 'type de lien',
+                           l.lien_date                    as 'date',
+                           l.lien_lieu                    as 'lieu'
+                    from lien l
+                             inner join famille f on l.famille_id = f.id
+                             inner join individu i1 on l.iid1 = i1.id and l.famille_id = i1.famille_id
+                             inner join individu i2 on l.iid2 = i2.id and l.famille_id = i2.famille_id
+                    where l.famille_id = ?
+                    order by lien_date DESC, l.lien_type
+                ", $family_id
+        )->fetchAll();
     }
 
 }
