@@ -52,7 +52,8 @@ switch ($action) {
         ControllerLink::$action();
         break;
     case "addParentLink" :
-        //TODO
+        ControllerLink::$action();
+        break;
     case "addUnionLink" :
         //TODO
 

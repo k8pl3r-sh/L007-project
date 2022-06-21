@@ -1,32 +1,31 @@
-
 <!-- ----- début viewInserted -->
-<?php
-require($root . '/app/view/fragment/fragmentHeader.html');
-?>
 
-<body>
-  <div class="container">
+<main class="container">
     <?php
-    include $root . '/app/view/fragment/fragmentNavigation.html';
-    include $root . '/app/view/famille/viewFamilleSelectionnee.php';
+    if (isset($_POST["individu"])) {
+        $link = ControllerLink::parentHasBeenCreated();
+        if (isset($link)) {
+            $array = $link;
+            //todo dire s'il on a ajouté père ou mère
+            require_once $root . "/app/view/viewTable.php";
+        } else {
+            echo "<h3>Le lien <b>" . $_POST['nom'] . "</b> existe déjà</h3>";
+        }
+
+
+    } else
+        echo("<h3>Problème lors de la création du lien</h3>");
+
+
     ?>
-    <!-- ===================================================== -->
+
+
     <?php
-    if ($results) {
-        echo("<h3>La nouvelle famille a été ajoutée </h3>");
-        echo("<ul>");
-        echo("<li>id = " . $results . "</li>");
-        echo("<li>cru = " . $_GET['nom'] . "</li>");
-        echo("</ul>");
-    } else {
-        echo("<h3>Problème de création de la famille</h3>");
-    }
 
-    echo("</div>");
 
-    include $root . '/app/view/fragment/fragmentFooter.html';
     ?>
-      <!-- ----- fin viewInserted -->
+</main>
 
-    
-    
+<!-- ----- fin viewInserted -->
+
+

@@ -16,11 +16,10 @@ University project in php
 | listEvent     | DONE   | ---        |
 | addEvent      | DONE   | ---        |
 | listLink      | DONE   | ---        |
-| addParentLink | TODO   | ---        |
-| addUnionLink  | TODO   | ---        |
+| addParentLink | WIP    | ---        |
+| addUnionLink  | SOON   | ---        |
 | listIndiv     | DONE   | ---        |
 | addIndiv      | TODO   | ---        |
 | pageIndiv     | TODO   | ---        |
 
-If partially done: to implement with the selected family
-
+WIP: work in progress
