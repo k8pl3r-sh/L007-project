@@ -5,11 +5,11 @@
     if (isset($_POST["individu"])) {
         $link = ControllerLink::parentHasBeenCreated();
         if (isset($link)) {
-            $array = $link;
+            $array = array($link);
             //todo dire s'il on a ajouté père ou mère
             require_once $root . "/app/view/viewTable.php";
         } else {
-            echo "<h3>Le lien <b>" . $_POST['nom'] . "</b> existe déjà</h3>";
+            echo "<h3>Le lien existe déjà</h3>";
         }
 
 

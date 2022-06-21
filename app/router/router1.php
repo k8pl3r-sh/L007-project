@@ -8,6 +8,8 @@ require('../controller/ControllerLink.php');
 require('../controller/ControllerIndiv.php');
 require_once '../controller/Controller.php';
 
+//todo on pourrait refactor les formulaires + tout ce qui est insert: une lib qui génère en fct de ce qu'on veut
+// ajouter une partie script additionnels
 
 session_start();
 

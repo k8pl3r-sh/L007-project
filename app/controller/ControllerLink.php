@@ -18,6 +18,8 @@ class ControllerLink extends Controller
 
     public static function addParentLink()
     {
+        // todo uniquement pour les personnes n'ayant pas de parents déclarés ?
+        //todo enlever les parents sans sexe
         $les_personnes = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily());
 
         ControllerFamily::render_template("viewInsert.php", ControllerLink::$directory,
@@ -28,13 +30,16 @@ class ControllerLink extends Controller
 
     public static function parentHasBeenCreated()
     {
-//        require 'config.php';
-//
-//        if (ModelFamily::fromName(($_POST["nom"])) !== null)
-//            return null;
-//
-//        self::setSelectedFamily($_POST["nom"]);
-//        return ModelFamily::addFamily($_POST["nom"]);
+        require 'config.php';
+
+        $parent = $_POST["parent"];
+        $individu = $_POST["individu"];
+        $famille_id = ControllerFamily::getSelectedFamily();
+        //todo debug fromName
+        $iid = ModelIndiv::fromName($famille_id, $individu)["id"];
+        $pid = ModelIndiv::fromName($famille_id, $parent)["id"];
+
+        return ModelLink::insertParentLink($famille_id, $iid, $pid);
 
     }
 

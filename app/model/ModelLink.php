@@ -114,6 +114,32 @@ class ModelLink
         )->fetchAll();
     }
 
+    public static function insertParentLink($famille_id, $individu_id, $parent_id)
+    {
+        $parent = ModelIndiv::fromId($parent_id, $famille_id);
+        $sexe = $parent["sexe"];
+        $row = $sexe == 'H' ? "pere" : $sexe == 'F' ? 'mere' : null;
+        if (is_null($row)) return null;
+        DatabaseConnector::getInstance()->query(
+            "UPDATE individu 
+                        SET " . $row . " = ?
+                        WHERE famille_id = ? 
+                          AND id = ?", $parent_id, $famille_id, $individu_id
+        );
+        return ModelIndiv::fromId($individu_id, $famille_id);
+    }
+
+    public static function insertUnionLink($famille_id, $iid1, $iid2, $type, $date, $lieu)
+    {
+        DatabaseConnector::getInstance()->query(
+            "insert into lien(famille_id, id, iid1, iid2, lien_type, lien_date, lien_lieu)
+                    values (?, (SELECT MAX( id ) + 1 from lien as ll where famille_id=?), ?, ?, ?, ?, ?)",
+            $famille_id, $famille_id, $iid1, $iid2, $type, $date, $lieu
+        );
+
+    }
+
+
 }
 
 ?>

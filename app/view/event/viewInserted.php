@@ -4,11 +4,11 @@
     <?php
     if (isset($_POST["individu"])) {
         $nv_event = ControllerEvent::eventHasBeenCreated();
-        if (isset($nv_event)) {
+        if (isset($nv_event)) { //todo faire des meilleures vérifications
             $array = $nv_event;
             require_once $root . "/app/view/viewTable.php";
         } else {
-            echo "<h3>L'évènement <b>" . $_POST['nom'] . "</b> existe déjà</h3>";
+            echo "<h3>L'évènement existe déjà</h3>";
         }
 
 

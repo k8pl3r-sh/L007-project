@@ -23,6 +23,13 @@ class ModelIndiv
         }
     }
 
+    public static function fromName($famille_id, $nom_individu)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select * from individu where famille_id=? and CONCAT(nom,prenom)=?", $famille_id, $nom_individu
+        )->fetchAll()[0];
+    }
+
     function setId($id)
     {
         $this->id = $id;
@@ -93,7 +100,6 @@ class ModelIndiv
         return $this->prenom;
     }
 
-
     public static function listIndiv()
     {
         return DatabaseConnector::getInstance()->query(
@@ -108,6 +114,14 @@ class ModelIndiv
                     where i.id!=0
                     order by f.nom, i.nom, i.prenom"
         )->fetchAll();
+    }
+
+
+    public static function fromId($individu_id, $famille_id)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select * from individu where id=? and famille_id=? limit 1", $individu_id, $famille_id
+        )->fetchAll()[0];
     }
 
     public static function getAllIndivFromFamily($family_id)
