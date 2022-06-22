@@ -118,7 +118,7 @@ class ModelLink
     {
         $parent = ModelIndiv::fromId($parent_id, $famille_id);
         $sexe = $parent["sexe"];
-        $row = $sexe == 'H' ? "pere" : $sexe == 'F' ? 'mere' : null;
+        $row = $sexe == 'H' ? "pere" : ($sexe == 'F' ? 'mere' : null);
         if (is_null($row)) return null;
         DatabaseConnector::getInstance()->query(
             "UPDATE individu 

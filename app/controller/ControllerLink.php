@@ -22,6 +22,9 @@ class ControllerLink extends Controller
         //todo enlever les parents sans sexe
         $les_personnes = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily());
 
+        // la vue va enlever les parents sans le sexe
+        $les_parents = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily());
+
         ControllerFamily::render_template("viewInsert.php", ControllerLink::$directory,
             array('titre' => "Ajout d'une famille",
                 "les_personnes" => $les_personnes

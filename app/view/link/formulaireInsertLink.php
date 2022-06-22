@@ -31,6 +31,7 @@
                     <?php
 
                     foreach ($les_personnes as $personne) {
+                        if ($personne["sexe"] == '?') continue;
                         $nom = $personne["nom"];
                         $prenom = $personne["prenom"];
                         // permet de selectionner le 2eme élement de la liste comme choisi par défaut
