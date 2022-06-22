@@ -20,11 +20,11 @@ class ModelEvent
         }
     }
 
-
     function setId($id)
     {
         $this->id = $id;
     }
+
 
     function setIid($iid)
     {
@@ -82,21 +82,6 @@ class ModelEvent
     }
 
     /**
-     * Liste tous les évènements liés à la famille passée en paramètre
-     * @param $famille_id l'id de la famille
-     * @return array tous les évènements
-     */
-    public static function listEventFamille($famille_id)
-    {
-        return DatabaseConnector::getInstance()->query(
-            "select
-                        f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
-                        from evenement e join famille f on e.famille_id = f.id
-                        where famille_id = ? 
-                        order by event_date", $famille_id)->fetchAll();
-    }
-
-    /**
      * Retourne un tableau représentant tous les types d'évènements possibles
      * @return tableau de la forme
      * array (size=2)
@@ -112,6 +97,38 @@ class ModelEvent
         return DatabaseConnector::getInstance()->query(
             "select distinct event_type from evenement order by event_type"
         )->fetchAll();
+    }
+
+    /**
+     * Liste tous les évènements liés à la famille passée en paramètre
+     * @param $famille_id l'id de la famille
+     * @return array tous les évènements
+     */
+    public static function listEventFamille($famille_id)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select
+                        f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
+                        from evenement e join famille f on e.famille_id = f.id
+                        where famille_id = ? 
+                        order by event_date", $famille_id)->fetchAll();
+    }
+
+    /**
+     * Liste tous les évènement d'une personne précise de la famille
+     * @param $personne_id
+     * @param $famille_id
+     * @return array
+     * @throws Exception
+     */
+    public static function listEventIndividu($personne_id, $famille_id)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select
+                        f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
+                        from evenement e join famille f on e.famille_id = f.id
+                        where famille_id = ? and e.iid = ?
+                        order by event_date", $famille_id, $personne_id)->fetchAll();
     }
 
     /**

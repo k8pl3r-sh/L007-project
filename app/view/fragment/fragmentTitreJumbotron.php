@@ -14,8 +14,8 @@
     <?php
 
     if (isset($_SESSION["nom_famille_selectionne"])) {
-        $famille_selectionne = ModelFamily::fromName($_SESSION["nom_famille_selectionne"]);
-        echo '<p class="lead">Famille sélectionnée: <b id="nom_famille">' . $famille_selectionne->getName() . '</b> </p>';
+        $famille_selectionne = ModelFamily::fromId($_SESSION["nom_famille_selectionne"]);
+        echo '<p class="lead">Famille sélectionnée: <b id="nom_famille">' . $famille_selectionne["nom"] . '</b> </p>';
     } else
         echo '<p class="lead">Pas de famille sélectionnée </p>';
 

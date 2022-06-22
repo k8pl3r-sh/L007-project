@@ -38,7 +38,6 @@ class ModelFamily
         return $this->nom;
     }
 
-
     /**
      * Tranforme un tableau de tableau en tableau de famille
      *
@@ -53,19 +52,20 @@ class ModelFamily
         }, $array);
     }
 
+
 // retourne une liste des id
+
     public static function listFamily()
     {
         $db = DatabaseConnector::getInstance();
         return $db->query("select * from famille")->fetchAll();
     }
 
-    public static function fromName($name)
+    public static function fromId($famille_id)
     {
-        // comme on a besoin d'une seule famille
-        $famille = self::selectFamily($name);
-        if (!empty($famille))
-            return self::array_map_famille($famille)[0];
+        return DatabaseConnector::getInstance()->query(
+            "select * from famille where id=? limit 1", $famille_id
+        )->fetchAll()[0];
     }
 
 

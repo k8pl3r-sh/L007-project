@@ -24,51 +24,38 @@ parse_str($query_string, $param);
 // --- $action contient le nom de la méthode statique recherchée
 $action = htmlspecialchars($param["action"]);
 
+$action = $param["action"];
+unset($param["action"]);
+$args = $param;
+var_dump($action);
+
 // --- Liste des méthodes autorisées
 switch ($action) {
     case "accueil" :
         Controller::$action();
         break;
     case "listFamily" :
-        ControllerFamily::$action();
-        break;
     case "familyCreate" :
-        ControllerFamily::$action();
-        break;
     case "addFamily" :
-        ControllerFamily::$action();
-        break;
     case "selectFamily" :
-        ControllerFamily::$action();
-        break;
     case "familySelected":
-        ControllerFamily::familySelected();
+        ControllerFamily::$action();
         break;
     case "listEvent" :
-        ControllerEvent::$action();
-        break;
     case "eventCreate" :
-        ControllerEvent::$action();
-        break;
     case "listLink" :
-        ControllerLink::$action();
-        break;
     case "addParentLink" :
-        ControllerLink::$action();
-        break;
     case "addUnionLink" :
-        //TODO
+        ControllerLink::$action();
 
     case "listIndiv" :
-        ControllerIndiv::$action();
-        break;
     case "addIndiv" :
+    case "selectIndiv":
+        var_dump($args);
+        ControllerIndiv::$action($args);
         //TODO
         break;
 
-    case "debug" :
-        ControllerFamily::$action();
-        break;
     default:
         //todo faire un 404
         $action = "accueil";

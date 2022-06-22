@@ -59,10 +59,10 @@ class ControllerFamily extends Controller
 
     public static function familySelected()
     {
-        self::setSelectedFamily($_GET["famille"]);
-        $element = ModelFamily::fromName($_SESSION["nom_famille_selectionne"]);
+        self::setSelectedFamily($_POST["famille"]);
+        $element = ModelFamily::fromId($_POST["famille"]);
         Controller::render_template("viewOne.php", ControllerFamily::$directory,
-            array('titre' => "Sélection d'une famille",
+            array('titre' => "Famille choisie",
                 "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily()),
                 "element" => $element
             ));

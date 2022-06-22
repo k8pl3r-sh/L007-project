@@ -14,8 +14,8 @@
         <tbody>
         <?php
         // La liste des famille est dans une variable $results
-        printf("<tr><td>%d</td><td>%s</td></tr>", $element->getId(),
-            $element->getName());
+        printf("<tr><td>%d</td><td>%s</td></tr>", $element["id"],
+            $element["nom"]);
         ?>
         </tbody>
     </table>
