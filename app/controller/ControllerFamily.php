@@ -68,14 +68,14 @@ class ControllerFamily extends Controller
             ));
     }
 
-    private static function setSelectedFamily($nom)
+    private static function setSelectedFamily($id)
     {
-        $_SESSION["nom_famille_selectionne"] = $nom;
+        $_SESSION["id_famille_selectionnee"] = $id;
     }
 
     public static function getSelectedFamily()
     {
-        return ModelFamily::fromName($_SESSION["nom_famille_selectionne"])->getId();
+        return $_SESSION["id_famille_selectionnee"];
     }
 
 

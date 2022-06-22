@@ -24,6 +24,8 @@ parse_str($query_string, $param);
 // --- $action contient le nom de la méthode statique recherchée
 $action = htmlspecialchars($param["action"]);
 
+// todo vérifier qu'une famille est sélectionnée pour les pages
+
 $action = $param["action"];
 unset($param["action"]);
 $args = $param;
@@ -43,10 +45,14 @@ switch ($action) {
         break;
     case "listEvent" :
     case "eventCreate" :
+        ControllerEvent::$action();
+        break;
+
     case "listLink" :
     case "addParentLink" :
     case "addUnionLink" :
         ControllerLink::$action();
+        break;
 
     case "listIndiv" :
     case "addIndiv" :

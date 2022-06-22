@@ -106,6 +106,7 @@ class ModelEvent
      */
     public static function listEventFamille($famille_id)
     {
+        var_dump($famille_id);
         return DatabaseConnector::getInstance()->query(
             "select
                         f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu

@@ -13,8 +13,8 @@
     <hr class="my-4">
     <?php
 
-    if (isset($_SESSION["nom_famille_selectionne"])) {
-        $famille_selectionne = ModelFamily::fromId($_SESSION["nom_famille_selectionne"]);
+    if (isset($_SESSION["id_famille_selectionnee"])) {
+        $famille_selectionne = ModelFamily::fromId($_SESSION["id_famille_selectionnee"]);
         echo '<p class="lead">Famille sélectionnée: <b id="nom_famille">' . $famille_selectionne["nom"] . '</b> </p>';
     } else
         echo '<p class="lead">Pas de famille sélectionnée </p>';
