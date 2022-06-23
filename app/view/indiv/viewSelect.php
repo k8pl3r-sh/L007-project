@@ -4,16 +4,15 @@
 <main class="container">
 
     <?php if ($_SERVER["REQUEST_METHOD"] === "GET") {
-
         echo <<<'EOF'
          <h2 class="py-5">Veuillez choisir l'individu qui vous intéresse</h2>
-            <form role="form" method='GET' >
+            <form role="form" method='POST'  action='router1.php?action=selectIndiv' >
         
-                <select name="individu_nom_prenom" data-live-search="true" class="selectpicker col-lg-12 text-center" >
+                <select name="individu_id" data-live-search="true" class="selectpicker col-lg-12 text-center" >
 EOF;
         if (!empty($object_list)) {
             foreach ($object_list as $obj)
-                echo "<option value=" . $obj["nom"] . $obj["prenom"] . ">" . $obj['nom'] . " " . $obj["prenom"] . "</option>";
+                echo "<option value=" . $obj["id"] . ">" . $obj['nom'] . " " . $obj["prenom"] . "</option>";
         }
 
         echo '  </select>

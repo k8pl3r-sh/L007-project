@@ -28,8 +28,7 @@ $action = htmlspecialchars($param["action"]);
 
 $action = $param["action"];
 unset($param["action"]);
-$args = $param;
-var_dump($action);
+$args = array_merge($param, $_POST);
 
 // --- Liste des méthodes autorisées
 switch ($action) {
@@ -57,7 +56,6 @@ switch ($action) {
     case "listIndiv" :
     case "addIndiv" :
     case "selectIndiv":
-        var_dump($args);
         ControllerIndiv::$action($args);
         //TODO
         break;

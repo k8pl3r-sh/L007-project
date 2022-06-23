@@ -12,26 +12,25 @@ class ControllerIndiv extends Controller
     // --- Liste des individus
     public static function listIndiv()
     {
-        $results = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily());
+        $results = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily(), false);
         LibGlobale::print_html_table($results, "Tous les individus");
     }
 
     public static function selectIndiv($args)
     {
-        var_dump($args);
         extract($args);
 
-        if (isset($personne_id)) {
-            var_dump("test");
+        if (isset($individu_id)) {
+            $famille_id = ControllerFamily::getSelectedFamily();
+            $personne = ModelIndiv::fromId($individu_id, $famille_id);
+            $personne_id = $personne["id"];
             // chopper infos de vie et mort
-            $life_data = ModelEvent::listEventIndividu($personne_id, $famille_id);
-            $personne = ModelIndiv::fromId($personne_id);
+            $life_data = ModelEvent::listNaissanceMortIndividu($personne_id, $famille_id);
             $parents = array(
-                "pere" => ModelIndiv::fromId($personne->getPere()),
-                "mere" => ModelIndiv::fromId($personne->getMere())
+                "pere" => ModelIndiv::fromId($personne["pere"], $famille_id),
+                "mere" => ModelIndiv::fromId($personne["mere"], $famille_id)
             );
             $unions = ModelLink::listLinkOfIndividu($personne_id, $famille_id);
-            var_dump($life_data, $personne, $parents, $unions);
             // lister les unions avec éventuels résidus
             ControllerFamily::render_template("viewOne.php", ControllerIndiv::$directory,
                 array('titre' => "Présentation de <b>" . $personne['nom'] . " " . $personne['prenom'] . "</b>",
@@ -40,12 +39,11 @@ class ControllerIndiv extends Controller
                     'parents' => $parents,
                     'unions' => $unions
                 ));
-        }
-        ControllerFamily::render_template("viewSelect.php", ControllerIndiv::$directory,
-            array('titre' => "Sélection de l'individu à afficher",
-                'object_list' => ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily())
-            ));
-
+        } else
+            ControllerFamily::render_template("viewSelect.php", ControllerIndiv::$directory,
+                array('titre' => "Sélection de l'individu à afficher",
+                    'object_list' => ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily())
+                ));
 
     }
 

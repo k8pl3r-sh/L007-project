@@ -106,7 +106,6 @@ class ModelEvent
      */
     public static function listEventFamille($famille_id)
     {
-        var_dump($famille_id);
         return DatabaseConnector::getInstance()->query(
             "select
                         f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
@@ -130,6 +129,26 @@ class ModelEvent
                         from evenement e join famille f on e.famille_id = f.id
                         where famille_id = ? and e.iid = ?
                         order by event_date", $famille_id, $personne_id)->fetchAll();
+    }
+
+    public static function listNaissanceMortIndividu($personne_id, $famille_id)
+    {
+        $naissance = DatabaseConnector::getInstance()->query(
+            "select
+                        f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
+                        from evenement e join famille f on e.famille_id = f.id
+                        where famille_id = ? and e.iid = ? and event_type='NAISSANCE'
+                        limit 1", $famille_id, $personne_id)->fetchAll();
+        $mort = DatabaseConnector::getInstance()->query(
+            "select
+                        f.nom as famille, event_date as 'date', event_type as 'type', event_lieu as lieu
+                        from evenement e join famille f on e.famille_id = f.id
+                        where famille_id = ? and e.iid = ? and event_type='DECES'
+                        limit 1", $famille_id, $personne_id)->fetchAll();
+        return array(
+            "naissance" => !empty($naissance) ? $naissance[0] : null,
+            "deces" => !empty($mort) ? $mort[0] : null
+        );
     }
 
     /**

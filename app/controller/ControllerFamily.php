@@ -75,7 +75,7 @@ class ControllerFamily extends Controller
 
     public static function getSelectedFamily()
     {
-        return $_SESSION["id_famille_selectionnee"];
+        return $_SESSION["id_famille_selectionnee"] ?? null;
     }
 
 

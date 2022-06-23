@@ -121,9 +121,11 @@ class ModelLink
                     select f.nom                          as 'famille',
                            concat(i1.nom, ' ', i1.prenom) as 'individu1',
                            concat(i2.nom, ' ', i2.prenom) as 'individu2',
+                           i1.id                          as 'iid1',
+                           i2.id                          as 'iid2',
                            l.lien_type                    as 'type de lien',
                            l.lien_date                    as 'date',
-                           l.lien_lieu                    as 'lieu'
+                           l.lien_lieu                    as 'lieu'    
                     from lien l
                              inner join famille f on l.famille_id = f.id
                              inner join individu i1 on l.iid1 = i1.id and l.famille_id = i1.famille_id

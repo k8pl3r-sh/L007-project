@@ -30,6 +30,17 @@ class ModelIndiv
         )->fetchAll()[0];
     }
 
+    /**
+     * @param $individu_nom_prenom la concaténation du nom de famille et du prénom de l'individu
+     * @return void
+     */
+    public static function fromConcatenatedNames($individu_nom_prenom)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select * from individu where CONCAT(nom,prenom)=? limit 1", $individu_nom_prenom
+        )->fetchAll()[0];
+    }
+
     function setId($id)
     {
         $this->id = $id;
@@ -124,12 +135,18 @@ class ModelIndiv
         )->fetchAll()[0];
     }
 
-    public static function getAllIndivFromFamily($family_id)
+    /**
+     * @param $family_id
+     * @param $select_id boolean qui indique si le résultat contiendra les id des utilisateurs
+     * @return array
+     * @throws Exception
+     */
+    public static function getAllIndivFromFamily($family_id, $select_id = true)
     {
+        $select = $select_id ? "i.id," : "";
         return DatabaseConnector::getInstance()->query(
             "
-                    select 
-                        f.nom as famille, i.nom as nom, i.prenom as prenom,
+                    select " . $select . " f.nom as famille, i.nom as nom, i.prenom as prenom,
                         CONCAT(p.nom, ' ', p.prenom) as pere,
                         CONCAT(m.nom, ' ', m.prenom) as mere
                     from individu i
