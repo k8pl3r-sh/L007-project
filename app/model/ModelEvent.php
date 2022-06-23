@@ -20,67 +20,6 @@ class ModelEvent
         }
     }
 
-    function setId($id)
-    {
-        $this->id = $id;
-    }
-
-
-    function setIid($iid)
-    {
-        $this->iid = $iid;
-    }
-
-    function setEvent_type($event_type)
-    {
-        $this->event_type = $event_type;
-    }
-
-    function setEvent_date($event_date)
-    {
-        $this->event_date = $event_date;
-    }
-
-    function setEvent_lieu($event_lieu)
-    {
-        $this->event_lieu = $event_lieu;
-    }
-
-    function getId()
-    {
-        return $this->id;
-    }
-
-    function getIid()
-    {
-        return $this->iid;
-    }
-
-    function getFamille_id()
-    {
-        return $this->famille_id;
-    }
-
-    function setFamille_Id($famille_id)
-    {
-        $this->famille_id = $famille_id;
-    }
-
-    function getEvent_type()
-    {
-        return $this->event_type;
-    }
-
-    function getEvent_date()
-    {
-        return $this->event_date;
-    }
-
-    function getEvent_lieu()
-    {
-        return $this->event_lieu;
-    }
-
     /**
      * Retourne un tableau représentant tous les types d'évènements possibles
      * @return tableau de la forme
@@ -173,6 +112,66 @@ class ModelEvent
                     where iid = ? and famille_id=? and event_date=? and event_type=? order by id DESC limit 1"
             , $individu, $famille_id, $date, $evenement
         )->fetchAll();
+    }
+
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    function setIid($iid)
+    {
+        $this->iid = $iid;
+    }
+
+    function setEvent_type($event_type)
+    {
+        $this->event_type = $event_type;
+    }
+
+    function setEvent_date($event_date)
+    {
+        $this->event_date = $event_date;
+    }
+
+    function setEvent_lieu($event_lieu)
+    {
+        $this->event_lieu = $event_lieu;
+    }
+
+    function getId()
+    {
+        return $this->id;
+    }
+
+    function getIid()
+    {
+        return $this->iid;
+    }
+
+    function getFamille_id()
+    {
+        return $this->famille_id;
+    }
+
+    function setFamille_Id($famille_id)
+    {
+        $this->famille_id = $famille_id;
+    }
+
+    function getEvent_type()
+    {
+        return $this->event_type;
+    }
+
+    function getEvent_date()
+    {
+        return $this->event_date;
+    }
+
+    function getEvent_lieu()
+    {
+        return $this->event_lieu;
     }
 }
 

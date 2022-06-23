@@ -12,7 +12,7 @@ EOF;
         if (!empty($object_list)) {
             foreach ($object_list as $obj) {
                 echo "<option  data-subtext=" . $obj->getid() . " value=" . $obj->getId() . ">" . $obj->getName() . "</option>";
-            };
+            }
         }
 
         echo '  </select>

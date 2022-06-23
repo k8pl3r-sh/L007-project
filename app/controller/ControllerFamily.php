@@ -10,13 +10,6 @@ class ControllerFamily extends Controller
 
 
     // --- Liste des Familles
-    public static function listFamily()
-    {
-        $results = ModelFamily::listFamily();
-        LibGlobale::print_html_table($results, "Toutes les familles");
-
-    }
-
 
     public static function familyCreate()
     {
@@ -39,6 +32,11 @@ class ControllerFamily extends Controller
 
     }
 
+    private static function setSelectedFamily($id)
+    {
+        $_SESSION["id_famille_selectionnee"] = $id;
+    }
+
     public static function debug()
     {
         // ----- Construction chemin de la vue
@@ -57,6 +55,13 @@ class ControllerFamily extends Controller
 
     }
 
+    public static function listFamily()
+    {
+        $results = ModelFamily::listFamily();
+        LibGlobale::print_html_table($results, "Toutes les familles");
+
+    }
+
     public static function familySelected()
     {
         self::setSelectedFamily($_POST["famille"]);
@@ -66,11 +71,6 @@ class ControllerFamily extends Controller
                 "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily()),
                 "element" => $element
             ));
-    }
-
-    private static function setSelectedFamily($id)
-    {
-        $_SESSION["id_famille_selectionnee"] = $id;
     }
 
     public static function getSelectedFamily()

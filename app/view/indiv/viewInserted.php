@@ -1,11 +1,10 @@
-
 <!-- ----- début viewInserted -->
 <?php
 require($root . '/app/view/fragment/fragmentHeader.html');
 ?>
 
 <body>
-  <div class="container">
+<div class="container">
     <?php
     include $root . '/app/view/fragment/fragmentNavigation.html';
     include $root . '/app/view/famille/viewFamilleSelectionnee.php';
@@ -26,7 +25,7 @@ require($root . '/app/view/fragment/fragmentHeader.html');
 
     include $root . '/app/view/fragment/fragmentFooter.html';
     ?>
-      <!-- ----- fin viewInserted -->
+    <!-- ----- fin viewInserted -->
 
     
     

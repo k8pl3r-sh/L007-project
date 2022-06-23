@@ -12,13 +12,13 @@ if (!defined('DEBUG')) {
 // todo ancienne manière de gérer la bd
 $dsn = 'mysql:dbname=LO07;host=localhost;charset=utf8';
 $username = 'root';
-$password = '2842';
+$password = 'root';
 
 
 // nouvelle manière
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpass = "2842";
+$dbpass = "root";
 $dbname = "LO07";
 
 

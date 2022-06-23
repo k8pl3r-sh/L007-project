@@ -18,26 +18,6 @@ class ModelFamily
         }
     }
 
-    function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    function setName($nom)
-    {
-        $this->nom = $nom;
-    }
-
-    function getId()
-    {
-        return $this->id;
-    }
-
-    function getName()
-    {
-        return $this->nom;
-    }
-
     /**
      * Tranforme un tableau de tableau en tableau de famille
      *
@@ -52,9 +32,6 @@ class ModelFamily
         }, $array);
     }
 
-
-// retourne une liste des id
-
     public static function listFamily()
     {
         $db = DatabaseConnector::getInstance();
@@ -68,7 +45,6 @@ class ModelFamily
         )->fetchAll()[0];
     }
 
-
     public static function addFamily($nom)
     {
         $id = DatabaseConnector::getInstance()->query("select max(id) as id from famille")->fetchArray()['id'] + 1;
@@ -79,6 +55,29 @@ class ModelFamily
     public static function selectFamily($nom)
     {
         return DatabaseConnector::getInstance()->query("select * from famille where nom = ?  order by id DESC limit 1", $nom)->fetchAll();
+    }
+
+
+// retourne une liste des id
+
+    function setName($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    function getId()
+    {
+        return $this->id;
+    }
+
+    function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    function getName()
+    {
+        return $this->nom;
     }
 
 

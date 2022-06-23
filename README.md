@@ -1,10 +1,8 @@
 # L007-project
+
 University project in php
 
-
 # TODO
-
-
 
 ## Project functions to implement
 
