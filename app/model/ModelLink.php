@@ -122,7 +122,9 @@ class ModelLink
                            concat(i1.nom, ' ', i1.prenom) as 'individu1',
                            concat(i2.nom, ' ', i2.prenom) as 'individu2',
                            i1.id                          as 'iid1',
+                           i1.famille_id                  as 'fid1',
                            i2.id                          as 'iid2',
+                           i2.famille_id                  as 'fid2',
                            l.lien_type                    as 'type de lien',
                            l.lien_date                    as 'date',
                            l.lien_lieu                    as 'lieu'    

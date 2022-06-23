@@ -41,6 +41,26 @@ class ModelIndiv
         )->fetchAll()[0];
     }
 
+
+    /**
+     * @param $iid1 l'id de la personne en question
+     * @param array $unions un talbeau contenant toutes les unions de iid1
+     * @return array un tableau associant à chaque iid2 les enfants de l'union
+     */
+    public static function ListEnfantDUnion($iid1, array $unions)
+    {
+        $res = array();
+        foreach ($unions as $union) {
+            $iid = $union["iid1"] == $iid1 ? $union["iid2"] : $union["iid1"];
+            $res[$iid] =
+                DatabaseConnector::getInstance()->query(
+                    "select * from individu where (pere=? and mere=?) or (pere=? and mere=?)", $iid, $iid1, $iid1, $iid
+                )->fetchAll();
+        }
+        return $res;
+
+    }
+
     function setId($id)
     {
         $this->id = $id;

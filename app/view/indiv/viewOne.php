@@ -32,8 +32,16 @@
         foreach ($unions as $union) {
             $parent_nom = (isset($personne) && $union["iid1"] == $personne["id"]) ? $union["individu2"] : $union["individu1"];
             $parent_id = (isset($personne) && $union["iid1"] == $personne["id"]) ? $union["iid2"] : $union["iid1"];
-            echo '<p">Union avec <a href="router1.php?action=selectIndiv&individu_id=' . $parent_id . '">' . $parent_nom . '</a></p>';
-            //todo chopper les gosses
+            $parent_fid = (isset($personne) && $union["iid1"] == $personne["id"]) ? $union["fid2"] : $union["fid1"];
+            echo '<p">Union avec <a href="router1.php?action=selectIndiv&famille_id=' . $parent_fid . '&individu_id=' . $parent_id . '">' . $parent_nom . '</a></p>';
+            if (isset($les_enfants[$parent_id])) {
+                echo "<ol>";
+                foreach ($les_enfants[$parent_id] as $enfant)
+                    echo "<li>Enfant 
+                            <a href='router1.php?action=selectIndiv&famille_id=" . $enfant['famille_id'] . "&individu_id=" . $enfant['id'] . "'> " . $enfant['nom'] . ' ' . $enfant['prenom'] . "</a>
+                          </li>";
+                echo "</ol>";
+            }
 
         }
     ?>

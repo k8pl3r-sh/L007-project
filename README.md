@@ -20,6 +20,6 @@ University project in php
 | addUnionLink  | SOON   | ---                                  |
 | listIndiv     | DONE   | ---                                  |
 | addIndiv      | TODO   | ---                                  |
-| pageIndiv     | TODO   | ---                                  |
+| pageIndiv     | DONE   | ---                                  |
 
 WIP: work in progress
