@@ -3,6 +3,7 @@
 require_once '../model/ModelLink.php';
 require_once 'Controller.php';
 require_once 'ControllerFamily.php';
+require_once '../model/Formulaire.php';
 
 class ControllerLink extends Controller
 {
@@ -19,7 +20,6 @@ class ControllerLink extends Controller
     public static function addParentLink()
     {
         // todo uniquement pour les personnes n'ayant pas de parents déclarés ?
-        //todo enlever les parents sans sexe
         $les_personnes = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily());
 
         // la vue va enlever les parents sans le sexe
@@ -44,6 +44,40 @@ class ControllerLink extends Controller
 
         return ModelLink::insertParentLink($famille_id, $iid, $pid);
 
+    }
+
+    public static function addUnionLink()
+    {
+        $les_personnes_h = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily(), true, "and i.sexe='H'");
+        $les_personnes_f = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily(), true, "and i.sexe='F'");
+        $type_union = ModelLink::getAllTypesUnion();
+
+        $form = new Formulaire('addUnionLink', 'post');
+        $form->addSelectIndividuForm("Sélectionnez un homme", "homme", $les_personnes_h, true);
+        $form->addSelectIndividuForm("Sélectionnez une femme", "femme", $les_personnes_f, true);
+        $form->addSimpleSelectForm("Sélectionnez un type d'union", "type_union", $type_union);
+        $form->addDateField();
+        $form->addTextField("Quel est le lieu ?", "lieu", "Ecrivez ici le lieu");
+
+
+        ControllerFamily::render_template("viewInsertUnion.php", ControllerLink::$directory,
+            array('titre' => "Ajout d'une union",
+                'formulaire' => $form->getView(),
+            ));
+    }
+
+
+    public static function unionHasBeenCreated()
+    {
+        extract($_POST);
+
+        return ModelLink::insertUnionLink(ControllerFamily::getSelectedFamily(),
+            $homme,
+            $femme,
+            $type_union,
+            $date,
+            $lieu
+        );
     }
 
 }

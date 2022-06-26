@@ -90,7 +90,19 @@ class ModelLink
                     values (?, (SELECT MAX( id ) + 1 from lien as ll where famille_id=?), ?, ?, ?, ?, ?)",
             $famille_id, $famille_id, $iid1, $iid2, $type, $date, $lieu
         );
+        return DatabaseConnector::getInstance()->query(
+            "select *
+                        from lien 
+                        where famille_id=? and iid1=? and iid2=? and lien_type=? and lien_date=? limit 1
+                        ", $famille_id, $iid1, $iid2, $type, $date
+        )->fetchAll();
 
+    }
+
+    public static function getAllTypesUnion()
+    {
+        // todo optimiser en créant une table DB qui s'occupe de ça
+        return ["COUPLE", "SEPARATION", "PACS", "MARIAGE", "DIVORCE"];
     }
 
     function setId($id)

@@ -106,7 +106,7 @@ class ModelIndiv
      * @param boolean $select_id boolean qui indique si le résultat contiendra les id des utilisateurs
      * @return array un tableau contenant à chaque entrée un tableau représentant un individu
      */
-    public static function getAllIndivFromFamily($family_id, $select_id = true)
+    public static function getAllIndivFromFamily($family_id, $select_id = true, $filter = "")
     {
         $select = $select_id ? "i.id," : "";
         return DatabaseConnector::getInstance()->query(
@@ -118,7 +118,7 @@ class ModelIndiv
                      inner join individu p on p.id = i.pere and i.famille_id = p.famille_id
                      inner join individu m on m.id = i.mere and i.famille_id = m.famille_id
                      join famille f on i.famille_id = f.id
-                    where i.id!=0 and f.id = ?
+                    where i.id!=0 and f.id = ? " . $filter . "
                     order by f.nom, i.nom, i.prenom
             ", $family_id
         )->fetchAll();
