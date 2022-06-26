@@ -124,6 +124,19 @@ class ModelIndiv
         )->fetchAll();
     }
 
+    public static function insertIndividu($famille_id, $nom, $prenom, $sexe)
+    {
+        DatabaseConnector::getInstance()->query("
+        insert into individu(famille_id,id,  nom, prenom, sexe)
+        values( ?,(SELECT MAX( ii.id ) + 1 from individu ii where ii.famille_id=?), ?, ?, ?)
+        ", $famille_id, $famille_id, $nom, $prenom, $sexe
+        );
+        return DatabaseConnector::getInstance()->query("
+            select * from individu where famille_id=? and nom=? and prenom=?
+        ", $famille_id, $nom, $prenom
+        )->fetchAll();
+    }
+
     function setId($id)
     {
         $this->id = $id;

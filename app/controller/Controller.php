@@ -33,4 +33,13 @@ class Controller
         require($root . ControllerFamily::$base_directory . '/baseFooter.php');
 
     }
+
+    public static function require_family_selected($namespace, $function, $args = null)
+    {
+        if (is_null(ControllerFamily::getSelectedFamily()))
+            return self::render_template("viewErreurFamille.html", Controller::$base_directory,
+                array('titre' => "Bienvenue sur la généalogie des familles"));
+        return call_user_func(array($namespace, $function), $args);
+
+    }
 }

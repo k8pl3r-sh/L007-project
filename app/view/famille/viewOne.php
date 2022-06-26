@@ -1,7 +1,7 @@
 <!-- ----- début viewOne -->
 
 <section id="viewOne">
-    <button class="btn btn-block btn-primary" onclick="history.back()">Choisir une autre famille</button>
+    <button class="btn btn-block btn-info" onclick="history.back()">Choisir une autre famille</button>
 
 
     <table class="table table-striped table-bordered py-5">

@@ -72,19 +72,22 @@ EOF;
      * @param $placeholder
      * @return void
      */
-    public function addTextField($label, $name, $placeholder)
+    public function addTextField($label, $name, $placeholder, $with_icon = false)
     {
+        $icon_field = $with_icon
+            ? '<div class="input-group-prepend">
+                    <div class="input-group-text">
+                         <i class="fa fa-building"></i>
+                    </div>
+                </div>'
+            : "";
         $this->html_form .= <<<EOF
            <div class="form-group row">
             <label class="col-4 col-form-label" for="$name">$label</label>
             <div class="col-8">
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-building"></i>
-                        </div>
-                    </div>
-                    <input id="$name" name="lieu" placeholder="$placeholder" type="text"
+                    $icon_field
+                    <input id="$name" name="$name" placeholder="$placeholder" type="text"
                            class="form-control" required="required">
                 </div>
             </div>

@@ -16,7 +16,7 @@ EOF;
         }
 
         echo '  </select>
-                <button class="btn btn-primary btn-block" type="submit">Valider</button>
+                <button class="btn btn-info btn-block" type="submit">Valider</button>
                 </form>';
     } ?>
 </main>

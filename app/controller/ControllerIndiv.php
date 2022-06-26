@@ -3,6 +3,7 @@
 require_once '../model/ModelIndiv.php';
 require_once 'Controller.php';
 require_once 'ControllerFamily.php';
+require_once '../model/Formulaire.php';
 
 class ControllerIndiv extends Controller
 {
@@ -23,6 +24,23 @@ class ControllerIndiv extends Controller
         else
             self::firstSelectIndiv();
     }
+
+    public static function addIndiv()
+    {
+
+        $form = new Formulaire("addIndiv", 'post');
+        $form->addTextField("Nom ?", "nom", "Ecrivez ici le nom", false);
+        $form->addTextField("Prenom ?", "prenom", "Ecrivez ici le prenom", false);
+        $form->addSimpleSelectForm("Sélectionnez un sexe", "sexe",
+            array(
+                'H', 'F'
+            ));
+        ControllerFamily::render_template("viewInsert.php", self::$directory,
+            array('titre' => "Ajout d'un individu",
+                'formulaire' => $form->getView(),
+            ));
+    }
+
 
     /**
      * Affiche la page personnelle d'un individu
@@ -63,6 +81,17 @@ class ControllerIndiv extends Controller
                 'object_list' => ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily()),
                 'famille_id' => ControllerFamily::getSelectedFamily()
             ));
+    }
+
+    public static function indivHasBeenCreated()
+    {
+        extract($_POST);
+
+        return ModelIndiv::insertIndividu(ControllerFamily::getSelectedFamily(),
+            $nom,
+            $prenom,
+            $sexe
+        );
     }
 
 }
