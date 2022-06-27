@@ -40,9 +40,11 @@ class ModelFamily
 
     public static function fromId($famille_id)
     {
-        return DatabaseConnector::getInstance()->query(
+        $res = DatabaseConnector::getInstance()->query(
             "select * from famille where id=? limit 1", $famille_id
-        )->fetchAll()[0];
+        )->fetchAll();
+        if (empty($res)) return null;
+        return $res[0];
     }
 
     public static function addFamily($nom)
@@ -50,6 +52,13 @@ class ModelFamily
         $id = DatabaseConnector::getInstance()->query("select max(id) as id from famille")->fetchArray()['id'] + 1;
         DatabaseConnector::getInstance()->query("INSERT INTO famille (id, nom) VALUES (?, ?)", $id, $nom);
         return self::fromName($nom);
+    }
+
+    public static function fromName($nom)
+    {
+        return DatabaseConnector::getInstance()->query(
+            "select * from famille where nom=?", $nom
+        )->fetchAll();
     }
 
     public static function selectFamily($nom)

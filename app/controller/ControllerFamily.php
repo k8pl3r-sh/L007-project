@@ -2,6 +2,7 @@
 <?php
 
 require_once "Controller.php";
+require_once "../model/ModelFamily.php";
 
 class ControllerFamily extends Controller
 {
@@ -24,8 +25,10 @@ class ControllerFamily extends Controller
     {
         require 'config.php';
 
-        if (ModelFamily::fromName(($_POST["nom"])) !== null)
+        $famille = ModelFamily::fromName(($_POST["nom"]));
+        if (!empty($famille)) {
             return null;
+        }
 
         self::setSelectedFamily($_POST["nom"]);
         return ModelFamily::addFamily($_POST["nom"]);
@@ -37,12 +40,6 @@ class ControllerFamily extends Controller
         $_SESSION["id_famille_selectionnee"] = $id;
     }
 
-    public static function debug()
-    {
-        // ----- Construction chemin de la vue
-        include 'config.php';
-        echo("DEBUG");
-    }
 
     public static function selectFamily()
     {
