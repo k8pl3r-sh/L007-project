@@ -86,7 +86,6 @@ class ControllerIndiv extends Controller
     public static function indivHasBeenCreated()
     {
         extract($_POST);
-
         return ModelIndiv::insertIndividu(ControllerFamily::getSelectedFamily(),
             $nom,
             $prenom,

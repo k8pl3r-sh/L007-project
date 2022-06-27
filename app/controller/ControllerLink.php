@@ -26,7 +26,7 @@ class ControllerLink extends Controller
         $les_parents = ModelIndiv::getAllIndivFromFamily(ControllerFamily::getSelectedFamily());
 
         ControllerFamily::render_template("viewInsert.php", ControllerLink::$directory,
-            array('titre' => "Ajout d'une famille",
+            array('titre' => "Ajout d'un lien de parenté",
                 "les_personnes" => $les_personnes
             ));
     }

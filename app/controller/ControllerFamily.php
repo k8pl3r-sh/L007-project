@@ -30,16 +30,11 @@ class ControllerFamily extends Controller
             return null;
         }
 
-        self::setSelectedFamily($_POST["nom"]);
-        return ModelFamily::addFamily($_POST["nom"]);
+        $nv_famille = ModelFamily::addFamily($_POST["nom"]);
+        self::setSelectedFamily($nv_famille[0]['id']);
+        return $nv_famille;
 
     }
-
-    private static function setSelectedFamily($id)
-    {
-        $_SESSION["id_famille_selectionnee"] = $id;
-    }
-
 
     public static function selectFamily()
     {
@@ -50,6 +45,7 @@ class ControllerFamily extends Controller
                 "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily())));
 
     }
+
 
     public static function listFamily()
     {
@@ -67,6 +63,11 @@ class ControllerFamily extends Controller
                 "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily()),
                 "element" => $element
             ));
+    }
+
+    private static function setSelectedFamily($id)
+    {
+        $_SESSION["id_famille_selectionnee"] = $id;
     }
 
     public static function getSelectedFamily()

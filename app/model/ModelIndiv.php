@@ -95,9 +95,11 @@ class ModelIndiv
      */
     public static function fromId($individu_id, $famille_id)
     {
-        return DatabaseConnector::getInstance()->query(
+        $res = DatabaseConnector::getInstance()->query(
             "select * from individu where id=? and famille_id=? limit 1", $individu_id, $famille_id
-        )->fetchAll()[0];
+        )->fetchAll();
+        if (empty($res)) return null;
+        return $res[0];
     }
 
     /**
@@ -111,7 +113,7 @@ class ModelIndiv
         $select = $select_id ? "i.id," : "";
         return DatabaseConnector::getInstance()->query(
             "
-                    select " . $select . " f.nom as famille, i.nom as nom, i.prenom as prenom,
+                    (select " . $select . " f.nom as famille, i.nom as nom, i.prenom as prenom,
                         CONCAT(p.nom, ' ', p.prenom) as pere,
                         CONCAT(m.nom, ' ', m.prenom) as mere
                     from individu i
@@ -119,22 +121,40 @@ class ModelIndiv
                      inner join individu m on m.id = i.mere and i.famille_id = m.famille_id
                      join famille f on i.famille_id = f.id
                     where i.id!=0 and f.id = ? " . $filter . "
-                    order by f.nom, i.nom, i.prenom
-            ", $family_id
+                    order by f.nom, i.nom, i.prenom)
+                    union
+                     (select " . $select . " f.nom as famille, i.nom as nom, i.prenom as prenom,
+                        'inconnu' as pere,
+                        'inconnue' as mere
+                    from individu i
+                     join famille f on i.famille_id = f.id
+                    where i.id!=0 and f.id = ? and (i.pere IS NULL or i.mere IS NULL) " . $filter . "
+                    order by f.nom, i.nom, i.prenom)
+            ", $family_id, $family_id
         )->fetchAll();
     }
 
     public static function insertIndividu($famille_id, $nom, $prenom, $sexe)
     {
+        $max_id = self::getMaxIdFromFamille($famille_id);
         DatabaseConnector::getInstance()->query("
-        insert into individu(famille_id,id,  nom, prenom, sexe)
-        values( ?,(SELECT MAX( ii.id ) + 1 from individu ii where ii.famille_id=?), ?, ?, ?)
-        ", $famille_id, $famille_id, $nom, $prenom, $sexe
+        insert into individu(id,famille_id,  nom, prenom, sexe)
+        values( ? + 1, ?, ?, ?, ?)
+        ", $max_id, $famille_id, $nom, $prenom, $sexe
         );
         return DatabaseConnector::getInstance()->query("
             select * from individu where famille_id=? and nom=? and prenom=?
         ", $famille_id, $nom, $prenom
         )->fetchAll();
+    }
+
+    private static function getMaxIdFromFamille($famille_id)
+    {
+        $res = DatabaseConnector::getInstance()->query(
+            "select GREATEST(MAX(id),0) as id from individu where famille_id=? limit 1", $famille_id
+        )->fetchAll();
+        if (!isset($res[0]['id']) || $res[0]['id'] == null) return 0;
+        return $res[0]['id'];
     }
 
     function setId($id)
