@@ -102,7 +102,9 @@ class ModelLink
     public static function getAllTypesUnion()
     {
         // todo optimiser en créant une table DB qui s'occupe de ça
-        return ["COUPLE", "SEPARATION", "PACS", "MARIAGE", "DIVORCE"];
+        $var = ["COUPLE", "SEPARATION", "PACS", "MARIAGE", "DIVORCE"];
+        sort($var);
+        return $var;
     }
 
     function setId($id)
