@@ -19,7 +19,7 @@ class ControllerEvent extends Controller
 
 
         LibGlobale::print_html_table($results,
-            "Tous les évènements de la famille sélectionnée",
+            "Tous les évènements de la famille sélectionnée"
         );
 
     }

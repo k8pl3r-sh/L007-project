@@ -50,8 +50,7 @@ class ControllerFamily extends Controller
 
         ControllerFamily::render_template("viewSelect.php", ControllerFamily::$directory,
             array('titre' => "Sélection d'une famille",
-                "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily()))
-        );
+                "object_list" => ModelFamily::array_map_famille(ModelFamily::listFamily())));
 
     }
 

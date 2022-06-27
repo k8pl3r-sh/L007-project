@@ -52,7 +52,7 @@ class DatabaseConnector
     /**
      * @param mixed $query
      */
-    public function setQuery($query): void
+    public function setQuery($query)
     {
         $this->query = $query;
     }
