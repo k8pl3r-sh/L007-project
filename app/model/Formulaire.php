@@ -40,12 +40,10 @@ EOF;
     private function addSelectForm($label, $name, $values, $is_filtered = false, $callback_values, $callback_print)
     {
         $select_class = $is_filtered ? "custom-select" : "selectpicker";
-        $this->html_form .= <<<EOF
-            <div class="form-group row">
-                <label for="$name" class="col-4 col-form-label">$label</label>
-                <div class="col-8">
-                <select id="$name" name="$name" required="required" class="$select_class">
-        EOF;
+        $this->html_form .= "    <div class=\"form-group row\">
+        <label for=\"$name\" class=\"col-4 col-form-label\">$label</label>
+        <div class=\"col-8\">
+        <select id=\"$name\" name=\"$name\" required=\"required\" class=\"$select_class\">";
         if ($callback_values != null && is_callable($callback_values))
             if ($callback_print != null && is_callable($callback_print))
                 foreach ($values as $value)
