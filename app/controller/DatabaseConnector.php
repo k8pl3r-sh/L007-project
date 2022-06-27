@@ -36,7 +36,7 @@ class DatabaseConnector
     /**
      * @return mysqli le connecteur à la db
      */
-    public function getConnection(): mysqli
+    public function getConnection()
     {
         return $this->connection;
     }
