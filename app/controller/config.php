@@ -10,16 +10,16 @@ if (!defined('DEBUG')) {
 
 // Configuration de la base de données
 // todo ancienne manière de gérer la bd
-$dsn = 'mysql:dbname=lonnoyva;host=localhost;charset=utf8';
-$username = 'lonnoyva';
-$password = 'ZFekMK5n';
+$dsn = 'mysql:dbname=lo07;host=localhost;charset=utf8';
+$username = 'root';
+$password = 'root';
 
 
 // nouvelle manière
 $dbhost = "localhost";
-$dbuser = "lonnoyva";
-$dbpass = "ZFekMK5n";
-$dbname = "lonnoyva";
+$dbuser = "root";
+$dbpass = "root";
+$dbname = "lo07";
 
 
 // chemin absolu vers le répertoire du projet SUR DEV-ISI 
